@@ -78,6 +78,8 @@ class QuestionController extends Controller
 
 		$question->readtimes += 1;
 
+		$userAvatar = DB::table('users')->where('name',$question->username)->value('avatar');
+
 		$answer = Answer::all()->where('question_id',$id);
 		$count = $answer->count('id');
 		$question->answertimes = $count;
@@ -85,7 +87,7 @@ class QuestionController extends Controller
 
 		$question->content = Markdown::convertToHtml($question->content);
 
-		return view('questions.show', compact('question','answer','count'));
+		return view('questions.show', compact('question','userAvatar','answer','count'));
 	}
 
 	/**

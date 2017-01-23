@@ -3,49 +3,131 @@
 @section('title')
 	{{ $question->title }}
 @endsection
-@section('content')
-	<div style="background-color:#fff;">
-		<div class="container">
-			<div class="row">
-				@if(Session::has('status'))
-					<div class="alert alert-success">
-						<button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
-						{{ Session::get('status') }}
-					</div>
-				@endif
-				<div class="col-md-8 col-md-offset-2 article_show_item">
-					<h1 style="text-align:center;">{{ $question->title }}</h1>
-					<hr style="border-width:2px;border-top-color:rgba(125, 116, 122, 0.98)">
-					<i class="fa fa-calendar" aria-hidden="true"></i><em
-							style="font-size:14px;margin-right:60%;">Date:({{ $question->published_at }})</em>
 
-					<i class="fa fa-user-circle" aria-hidden="true"></i><em style="font-size:14px;">Author: <a
-								href="/profile/{{ $question->username }}">{{ $question->username }}</a></em>
-					@unless($question->tags->isEmpty())
-						<em>Tags:<i class="fa fa-tags" aria-hidden="true"></i></i>
-							@foreach($question->tags as $tag)
-								<a href="{{url('tag/'.$tag->id.'')}}">{{ $tag->name }}&nbsp;</a>
-							@endforeach
-						</em>
-					@endunless
-					<article style="margin-top:20px">
-						<div class="body">
-							@MarkDown($question->content)
-							<hr class="article-show_footline">
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/other/show.css') }}">
+<link href="{{ asset('css/simplemde.min.css') }}" rel="stylesheet">
+@endsection('css')
+
+@section('content')
+
+	<div class="container">
+		<div class="row">
+			@if(Session::has('status'))
+				<div class="alert alert-success">
+					<button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+					{{ Session::get('status') }}
+				</div>
+			@endif
+			<div class="question-header">
+				<span class="title">{{ $question->title }}</span>
+			</div>
+			<div class="col-md-9 col-sm-9">
+				<div class="question-mainbar">
+					<div class="row">
+						<div class="col-md-1 col-sm-1">
+							<div class="question-vote">
+								<a href="#" class="vote-top" data-toggle="tooltip" data-placement="top" title="This question shows research effort; it is useful and clear"><i class="fa fa-caret-up fa-2x" aria-hidden="true"></i></a>
+								<span class="vote-times">1</span>
+								<a href="#" class="vote-bottom" data-toggle="tooltip" data-placement="bottom" title="This question does not show any research effort; it is unclear or not useful"><i class="fa fa-caret-down fa-2x" aria-hidden="true"></i></a>
+							</div>
 						</div>
-					</article>
+						<div class="col-md-8 col-sm-8">
+							<div class="question-content">
+								<article>
+									@MarkDown($question->content)
+								</article>
+
+								<div class="tags">
+									@unless($question->tags->isEmpty())
+											@foreach($question->tags as $tag)
+												<a href="{{url('tag/'.$tag->id.'')}}">{{ $tag->name }}</a>
+											@endforeach
+									@endunless
+								</div>
+
+								<div class="user-info">
+									<span class="asked-time">asked&nbsp;{{ $question->created_at }}</span>
+									<img src="/uploads/avatars/{{ $userAvatar }}" alt="{{ $userAvatar }}" width="32" height="32"/>
+								  <a href="/profile/{{ $question->username }}">{{ $question->username }}</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="answers">
+						<span>{{$count}}&nbsp;Answer</span>
+					</div>
+				</div>
+				@include('questions.comment')
+			</div>
+
+			<div class="col-md-3 col-sm-3">
+				<div class="question-sidebar">
+					<div class="question-state">
+						<p>asked&nbsp;&nbsp;&nbsp;<span>{{ $question->created_at }}</span></p>
+						<p>viewed&nbsp;&nbsp;&nbsp;<span>{{ $question->readtimes }}</span></p>
+						<p>answred&nbsp;&nbsp;&nbsp;<span>10</span></p>
+					</div>
+					<div class="related">
+						<h4>Related</h4>
+						<div class="related-list">
+							<div class="list-content">
+								<div class="answer-times">
+									<span>10</span>
+								</div>
+								<a href="#">
+										<span>You can try to make a meaningful question</span>
+								</a>
+							</div>
+							<div class="list-content">
+								<div class="answer-times">
+									<span>10</span>
+								</div>
+								<a href="#">
+										<span>You can try to make a meaningful question</span>
+								</a>
+							</div>
+							<div class="list-content">
+								<div class="answer-times">
+									<span>10</span>
+								</div>
+								<a href="#">
+										<span>You can try to make a meaningful question</span>
+								</a>
+							</div>
+							<div class="list-content">
+								<div class="answer-times">
+									<span>10</span>
+								</div>
+								<a href="#">
+										<span>You can try to make a meaningful question</span>
+								</a>
+							</div>
+							<div class="list-content">
+								<div class="answer-times">
+									<span>10</span>
+								</div>
+								<a href="#">
+										<span>You can try to make a meaningful question</span>
+								</a>
+							</div>
+							<div class="list-content">
+								<div class="answer-times">
+									<span>10</span>
+								</div>
+								<a href="#">
+										<span>You can try to make a meaningful question</span>
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<div>
-			<span>{{$count}}:Answer</span>
-			<hr>
-		</div>
-		@include('questions.comment')
 
-	</div>
+
+
 	@if (Auth::guest())
 		<div class="container">
 			<h3 align="center">登录后可以提交回答
@@ -73,7 +155,6 @@
 @endsection
 
 @section('js')
-	<link href="/css/simplemde.min.css" rel="stylesheet">
 	<script src="/js/simplemde.min.js"></script>
 	<script>
 		$(document).ready(function() {
