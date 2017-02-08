@@ -1,0 +1,176 @@
+//variables
+//color variables
+
+$font-color: #242729;
+$border-bottom-color: #F7F7F9;
+$tags-color: #39739d;
+$tags-hover-color:#33658a;
+$tags-bg-color: #e1ecf4;
+$tags-bg-hover-color:#cee0ed;
+$scrollToTop-color: #111;
+
+$ordinaryMedia-width: 768px;
+$smallMedia-width: 360px;
+
+//@mixin
+
+@mixin ordinaryMedia {
+    @media only screen and (max-width: #{$ordinaryMedia-width}){
+        @content;
+    }
+}
+
+@mixin smallMedia {
+    @media only screen and (max-width: #{$smallMedia-width}) {
+        @content;
+    }
+}
+
+@mixin transition($transition-property, $transition-time, $method) {
+	-webkit-transition: $transition-property $transition-time $method;
+	-moz-transition: $transition-property $transition-time $method;
+	-ms-transition: $transition-property $transition-time $method;
+	-o-transition: $transition-property $transition-time $method;
+	transition: $transition-property $transition-time $method;
+}
+
+// tags content style
+
+blockquote {
+  color: $font-color;
+}
+
+.question-tags{
+  margin: {
+    top: .25em;
+    right: .25em;
+  }
+  padding: {
+    top: .25em;
+  }
+  border-bottom: 2px solid $border-bottom-color;
+  line-height: 1.6;
+
+  .count-wide {
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+    @include ordinaryMedia {
+      display: none;
+    }
+    @include smallMedia {
+      display: none;
+    }
+    div {
+      display: inline-block;
+      width: 30%;
+      text-align: center;
+      p {
+        font: {
+          size: .75em;
+        }
+      }
+      @include ordinaryMedia {
+        display: none;
+      }
+    }
+  }
+
+  .count-narrow {
+    display: none;
+    vertical-align: top;
+    float: right;
+
+    @include ordinaryMedia {
+      display: inline-block;
+    }
+
+    @include smallMedia {
+      display: none;
+    }
+  }
+
+  .details {
+    display: inline-table;
+    vertical-align: top;
+    padding-left: .25em;
+    width: 65%;
+
+    .tag-and-create-info {
+      .tag {
+        margin-left: .125em;
+      }
+
+      .create-info {
+        float: right;
+        @include ordinaryMedia {
+          float: none;
+        }
+      }
+    }
+  }
+}
+
+.page {
+  text-align: center;
+}
+
+//scroll to top content style
+
+.scrollToTop{
+  display: none;
+  position:fixed;
+	bottom: 5em;
+	right: 5em;
+  padding:10px;
+  width: auto;
+  height: auto;
+	text-decoration: none;
+  background-color: $scrollToTop-color;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+//sidebar content style
+
+.question-amount {
+  margin-bottom: 2em;
+  font-weight: 600;
+  color: $font-color;
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.related-tags {
+  h4 {
+    color: $font-color;
+  }
+  .tags {
+    margin: 1em 0;
+    padding: .1em .1em;
+    a {
+      border: 1px solid transparent;
+      border-radius: .25em;
+      @include transition(all, .15s, ease-in-out);
+      margin: .1em .1em .1em 0;
+      padding: .3em .5em;
+      cursor: pointer;
+      text: {
+        decoration: none;
+        align: center;
+      }
+      white-space: nowrap;
+      background-color: $tags-bg-color;
+      color: $tags-color;
+      &:hover {
+        color: $tags-hover-color;
+        background-color: $tags-bg-hover-color;
+      }
+    }
+  }
+}

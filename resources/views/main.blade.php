@@ -167,13 +167,13 @@
     </div>
 
     <div class="col-md-3">
-      <div class="qus-create">
+      <div class="questions-create">
           <p>All Questions About Development</p>
           <p><a class="btn btn-success btn-block" href="/questions/create" role="button">Ask Questions</a></p>
           <p>Begin!</p>
       </div>
-      <div class="list-group recomm">
-          <h4 class="recomm-tit">Recommend author</h4>
+      <div class="list-group recommend">
+          <h4 class="recommend-name">Recommend author</h4>
           <ol>
               <li>
                   <img src="/uploads/avatars/default.jpg" />

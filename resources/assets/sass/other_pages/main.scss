@@ -1,10 +1,34 @@
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+////variables
+//color variables
+
+$font-color: #242729;
+$border-bottom-color: #F7F7F9;
+$questions-create-color: #8a6d3b;
+$questions-create-border-color: #fbeed5;
+$questions-create-bgc: #fcf8e3;
+$recommend-name-hover-color: #2ed07a;
+$footer-color: #888;
+$footer-hover-color: #2ed07a;
+$footer-border-color: #ded4d4;
+$scrollToTop-color: #111;
+
+$ordinaryMedia-width: 768px;
+$smallMedia-width: 360px;
 
 //@mixin
+
+@mixin ordinaryMedia {
+    @media only screen and (max-width: #{$ordinaryMedia-width}){
+        @content;
+    }
+}
+
+@mixin smallMedia {
+    @media only screen and (max-width: #{$smallMedia-width}) {
+        @content;
+    }
+}
+
 @mixin border-radius($value) {
     -webkit-border-radius: $value;
     -moz-border-radius: $value;
@@ -13,224 +37,204 @@ body {
     border-radius: $value;
 }
 
+//main page content style
 
-$ordinaryMedia-width: 768px;
-$smallMedia-width: 550px;
-$x-smallMedia-width: 365px;
+.question-content {
+  margin-top: 1em;
 
-@mixin ordinaryMedia {
-    @media screen and (max-width: #{$ordinaryMedia-width}) {
-        @content;
+  .singleQuestion {
+    margin: {
+      top: .25em;
+      right: .25em;
     }
-}
-
-@mixin smallMedia {
-    @media screen and (max-width: #{$smallMedia-width}) {
-        @content;
+    padding: {
+      top: .25em;
     }
-}
+    border-bottom: 2px solid $border-bottom-color;
+    line-height: 1.6;
 
-@mixin x-smallMedia {
-    @media screen and (max-width: #{$x-smallMedia-width}) {
-        @content;
-    }
-}
-
-//sidebar content style: ;
-
-.qus-create {
-    margin-bottom: 2em;
-    border: 1px solid #fbeed5;
-    padding: 1em;
-    background-color: #fcf8e3;
-    color: #8a6d3b;
-    text-align: center;
-    @include border-radius(1em);
-    p {
-        font: {
-            size: 1em;
-            weight: bold;
+    .count-wide {
+      display: inline-block;
+      vertical-align: top;
+      width: 25%;
+      @include ordinaryMedia {
+        display: none;
+      }
+      @include smallMedia {
+        display: none;
+      }
+      div {
+        display: inline-block;
+        width: 30%;
+        text-align: center;
+        p {
+          font-size: .75em;
         }
-        a {
-            font: {
-                size: 1em;
-                weight: bold;
-            }
-        }
+      }
+      @include ordinaryMedia {
+        display: none;
+      }
     }
+
+    .count-narrow {
+      display: none;
+      vertical-align: top;
+      float: right;
+
+      @include ordinaryMedia {
+        display: inline-block;
+      }
+
+      @include smallMedia {
+        display: none;
+      }
+    }
+
+    .details {
+      display: inline-table;
+      vertical-align: top;
+      padding-left: .25em;
+      width: 65%;
+
+      .tag-and-create-info {
+
+        .tag {
+          margin-left: .125em;
+        }
+
+        .create-info {
+          float: right;
+          @include ordinaryMedia {
+            float: none;
+          }
+        }
+      }
+    }
+  }
 }
 
-.recomm {
-    display: inline-block;
-    .recomm-tit {
-        margin-left: 1.75em;
-        font-size: 1em;
+//sidebar content style
+
+.questions-create {
+  margin: {
+    top: 3em;
+    bottom: 2em;
+  }
+  border: 1px solid $questions-create-border-color;
+  padding: 1em;
+  background-color: $questions-create-bgc;
+  color: $questions-create-color;
+  text-align: center;
+  @include border-radius(1em);
+  p {
+    font: {
+      size: 1em;
+      weight: bold;
+    }
+    a {
+      font: {
+        size: 1em;
+        weight: bold;
+      }
+    }
+  }
+}
+
+.recommend {
+  display: inline-block;
+  .recommend-name {
+    margin-left: 1.75em;
+    font-size: 1em;
+    color: black;
+  }
+  ol {
+    li {
+      padding: 1em;
+      img {
+        margin-right: 0.5em;
+        @include border-radius(50%);
+        width: 2em;
+        height: 2em;
+      }
+      a {
+        text-decoration: none;
         color: black;
-    }
-    ol {
-        li {
-            padding: 1em;
-            img {
-                margin-right: 0.5em;
-                @include border-radius(50%);
-                width: 2em;
-                height: 2em;
-            }
-            a {
-                text-decoration: none;
-                color: black;
-                &:hover {
-                    color: #2ed07a;
-                }
-            }
+        &:hover {
+          color: $recommend-name-hover-color;
         }
+      }
     }
+  }
 }
 
 //scroll to top content style
 
 .scrollToTop{
-    position:fixed;
-	bottom: 5em;
-	right: 5em;
-    @include ordinaryMedia {
-        bottom: 4em;
-        right: 4em;
-    }
-    @include smallMedia {
-        bottom: 3em;
-        right: 3em;
-    }
-    @include x-smallMedia {
-        bottom: 2em;
-        right: 2em;
-    }
-    padding:10px;
-    width: auto;
-    height: auto;
-	text-decoration: none;
-    background-color: #111;
-    &:hover {
-        text-decoration: none;
-    }
+  display: none;
+  position:fixed;
+  bottom: 4em;
+  right: 4em;
+  padding:.75em;
+  text-decoration: none;
+  background-color: $scrollToTop-color;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 //footer content style
 
 .footer {
-    position: relative;
-    bottom: 0;
-    padding-bottom: 0;
-    // border-top: 1px  solid #ded4d4;
-    width: auto;
-    height: auto;
-    h3 {
-        border-bottom: 1px solid #ded4d4;
-        padding: 10px 0 10px;
-        line-height: 27px;
-        text-transform: uppercase;
-        font: {
-            size: 18px;
-            weight: 600;
-        }
-        color: #888;
+  position: relative;
+  bottom: 0;
+  padding-bottom: 0;
+  width: auto;
+  height: auto;
+  h3 {
+    border-bottom: 1px solid $footer-border-color;
+    padding: .75em 0 .75em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    font: {
+      size: 1.25em;
+      weight: 600;
     }
-    ul {
-        margin: {
-            left: 0;
-            top: 0;
-        }
-        padding-left: 0;
-        list-style-type: none;
-        font-size: 13px;
-        li {
-            a {
-                display: block;
-                padding: 0 0 5px 0;
-                text-decoration: none;
-                color: #888;
-                &:hover {
-                    color: #2ed07a;
-                }
-            }
-        }
+    color: $footer-color;
+  }
+  ul {
+    margin: {
+      left: 0;
+      top: 0;
     }
+    padding-left: 0;
+    list-style-type: none;
+    font-size: 13px;
+    li {
+      a {
+        display: block;
+        padding: 0 0 .25em 0;
+        text-decoration: none;
+        color: $footer-color;
+        &:hover {
+          color: $footer-hover-color;
+        }
+      }
+    }
+  }
 }
 
 .footer-bottom {
-    position: static;
-    bottom: 0;
-    padding: {
-        top: 10px;
-        bottom: 10px;
+  position: static;
+  bottom: 0;
+  padding: {
+    top: .5em;
+    bottom: .5em;
+  }
+  p {
+    padding-top: .5em;
+    text-align: center;
+    @include ordinaryMedia {
+      text-align: left;
     }
-    p {
-        padding-top: 6px;
-        text-align: center;
-    }
-}
-
-.question-content {
-    margin-top: 20px;
-}
-
-.singleQuestion {
-
-    margin-top: 5px;
-    padding-top: 15px;
-    margin: {
-        right: 5px;
-    }
-    border-bottom: 2px solid #F7F7F9;
-
-    .count-wide {
-        display: inline-block;
-        vertical-align: top;
-        width: 25%;
-        div {
-            display: inline-block;
-            width: 30%;
-            text-align: center;
-            p {
-                font-size: 12px;
-            }
-        }
-
-        @media screen and (max-width: 650px) {
-            display: none;
-        }
-    }
-
-    .count-narrow {
-        display: none;
-        vertical-align: top;
-        float: right;
-
-        @media screen and (max-width: 650px) {
-            display: inline-block;
-        }
-
-        @media screen and (max-width: 360px) {
-            display: none;
-        }
-    }
-
-    .details {
-        display: inline-table;
-        vertical-align: top;
-        padding: 0 0 0 5px;
-        width: 65%;
-        height: 63px;
-
-        .tag-and-create-info {
-
-            .tag {
-                margin-left: 1.5px;
-            }
-
-            .create-info {
-                float: right;
-            }
-        }
-    }
+  }
 }
