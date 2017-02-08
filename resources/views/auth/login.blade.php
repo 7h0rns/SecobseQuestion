@@ -18,13 +18,13 @@
                             <div class="col-md-6 input-group">
                                 <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
                             </div>
+
+                            @if ($errors->has('name'))
+                                <span class="help-block text-center">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
@@ -33,13 +33,13 @@
                             <div class="col-md-6 input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
                                 <input id="password" type="password" class="form-control" name="password">
+                            </div>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
+                            @if ($errors->has('password'))
+                                <span class="help-block text-center">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
-                            </div>
+                            @endif
                         </div>
 
                         <input type="hidden" id="isactive" name="isactive" value="1">

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d058c193fad0c8387d494ca8d67d48d2",
+    "content-hash": "76b82e110896931cd519d6b52199f2b0",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1403,6 +1403,43 @@
                 "schedule"
             ],
             "time": "2016-01-26T21:23:30+00:00"
+        },
+        {
+            "name": "naux/sendcloud",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NauxLiu/Laravel-SendCloud.git",
+                "reference": "d2ac795a53c39f4460fa4fe1701b16aba9cd6be2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/NauxLiu/Laravel-SendCloud/d2ac795a53c39f4460fa4fe1701b16aba9cd6be2.zip",
+                "reference": "d2ac795a53c39f4460fa4fe1701b16aba9cd6be2",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.1",
+                "illuminate/support": "^5.1",
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Naux\\Mail\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NauxLiu",
+                    "email": "nauxliu@gmail.com"
+                }
+            ],
+            "time": "2016-05-05T02:14:29+00:00"
         },
         {
             "name": "nesbot/carbon",

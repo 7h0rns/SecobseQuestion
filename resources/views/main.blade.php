@@ -11,7 +11,12 @@
 
 <div class="container">
   <div class="row">
-
+      @if(Session::has('logout'))
+          <div class="alert alert-success">
+              <button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+              {{ Session::get('logout') }}
+          </div>
+      @endif
     <div class="col-md-9">
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#recent" role="tab" data-toggle="tab">Recent</a></li>

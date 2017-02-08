@@ -18,9 +18,14 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('confirmation_token');
+            $table->smallInteger('is_confirm')->default(0);
+			$table->string('avatar')->default('default.jpg');
+			$table->integer('questions_count')->default(0);
+			$table->integer(('answers_count'))->default(0);
+			$table->integer('comments_count')->default(0);
             $table->boolean('isadmin')->default(0);
             $table->boolean('isactive')->default(1);
-			$table->string('avatar')->default('default.jpg');
             $table->rememberToken();
             $table->timestamps();
         });

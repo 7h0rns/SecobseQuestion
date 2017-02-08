@@ -52,6 +52,20 @@ class LoginController extends Controller
     }
 
     /**
+     * Attempt to log the user into the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    protected function attemptLogin(Request $request)
+    {
+        $credentials = array_merge($this->credentials($request), ['is_confirm' => 1]);
+        return $this->guard()->attempt(
+            $credentials, $request->has('remember')
+        );
+    }
+
+    /**
      * Send the response after the user was authenticated.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -66,7 +80,7 @@ class LoginController extends Controller
                     ->update(['isactive' => $request->input('isactive')]);
 
         $this->clearLoginAttempts($request);
-
+        session()->flash('status', '欢迎回来');
         return $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());
     }
@@ -89,7 +103,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/');
+        return redirect('/')->with('logout', 'Logout Successfully!');
     }
 
 }
