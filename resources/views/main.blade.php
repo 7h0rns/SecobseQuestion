@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Question')
+@section('title', 'Secobse')
 
 @section('css')
 <link rel="stylesheet" href="/css/other/main.css">
@@ -19,9 +19,9 @@
       @endif
     <div class="col-md-9">
       <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#recent" role="tab" data-toggle="tab">Recent</a></li>
-        <li role="presentation"><a href="#noanswer" role="tab" data-toggle="tab">No answer</a></li>
-        <li role="presentation"><a href="#mostviewed" role="tab" data-toggle="tab">Most viewed</a></li>
+        <li role="presentation" class="active"><a href="#recent" role="tab" data-toggle="tab">最新的</a></li>
+        <li role="presentation"><a href="#noanswer" role="tab" data-toggle="tab">未回答的</a></li>
+        <li role="presentation"><a href="#mostviewed" role="tab" data-toggle="tab">热门的</a></li>
       </ul>
 
         {{--rencentQuestions--}}
@@ -37,9 +37,9 @@
                   @foreach($questions as $question)
                   <div class="singleQuestion">
                       <div class="count-wide">
-                          <div><p>0</p><p>votes</p></div>
-                          <div><p>{{ $question->answertimes }}</p><p>answers</p></div>
-                          <div><p>{{ $question->readtimes }}</p><p>views</p></div>
+                          <div><p>0</p><p>得票</p></div>
+                          <div><p>{{ $question->answertimes }}</p><p>回答</p></div>
+                          <div><p>{{ $question->readtimes }}</p><p>浏览</p></div>
                       </div>
                       <div class="details">
                         <div>
@@ -59,14 +59,14 @@
                               <a href="/profile/{{ $question->username }}">
                                   <span>{{ $question->username }}</span>
                               </a>
-                              <span>created-time: {{ $question->created_at }}</span>
+                              <span>{{ $question->created_at }}提问</span>
                             </div>
                         </div>
                       </div>
                       <div class="count-narrow">
-                          <div><label for="vote" class="label label-default">votes: 0</label></div>
-                          <div><label for="answer" class="label label-default">answers: {{ $question->answertimes }}</label></div>
-                          <div><label for="view" class="label label-default">views: {{ $question->readtimes }}</label></div>
+                          <div><label for="vote" class="label label-default">得票: 0</label></div>
+                          <div><label for="answer" class="label label-default">回答: {{ $question->answertimes }}</label></div>
+                          <div><label for="view" class="label label-default">浏览: {{ $question->readtimes }}</label></div>
                       </div>
                   </div>
                   @endforeach
@@ -86,9 +86,9 @@
                     @foreach($noAnswerQuestion as $question)
                         <div class="singleQuestion">
                             <div class="count-wide">
-                                <div><p>0</p><p>votes</p></div>
-                                <div><p>{{ $question->answertimes }}</p><p>answers</p></div>
-                                <div><p>{{ $question->readtimes }}</p><p>views</p></div>
+                                <div><p>0</p><p>得票</p></div>
+                                <div><p>{{ $question->answertimes }}</p><p>回答</p></div>
+                                <div><p>{{ $question->readtimes }}</p><p>浏览</p></div>
                             </div>
                             <div class="details">
                                 <div>
@@ -108,14 +108,14 @@
                                         <a href="/profile/{{ $question->username }}">
                                             <span>{{ $question->username }}</span>
                                         </a>
-                                        <span>created-time: {{ $question->created_at }}</span>
+                                        <span>{{ $question->created_at }}提问</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="count-narrow">
-                                <div><label for="vote" class="label label-default">votes: 0</label></div>
-                                <div><label for="answer" class="label label-default">answers: {{ $question->answertimes }}</label></div>
-                                <div><label for="view" class="label label-default">views: {{ $question->readtimes }}</label></div>
+                                <div><label for="vote" class="label label-default">得票: 0</label></div>
+                                <div><label for="answer" class="label label-default">回答: {{ $question->answertimes }}</label></div>
+                                <div><label for="view" class="label label-default">浏览: {{ $question->readtimes }}</label></div>
                             </div>
                         </div>
                     @endforeach
@@ -134,9 +134,9 @@
                     @foreach($mostViewQuestion as $question)
                         <div class="singleQuestion">
                             <div class="count-wide">
-                                <div><p>-1</p><p>votes</p></div>
-                                <div><p>{{ $question->answertimes }}</p><p>answers</p></div>
-                                <div><p>{{ $question->readtimes }}</p><p>views</p></div>
+                                <div><p>-1</p><p>得票</p></div>
+                                <div><p>{{ $question->answertimes }}</p><p>回答</p></div>
+                                <div><p>{{ $question->readtimes }}</p><p>浏览</p></div>
                             </div>
                             <div class="details">
                                 <div>
@@ -156,14 +156,14 @@
                                         <a href="/profile/{{ $question->username }}">
                                             <span>{{ $question->username }}</span>
                                         </a>
-                                        <span>created-time: {{ $question->created_at }}</span>
+                                        <span>{{ $question->created_at }}提问</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="count-narrow">
-                                <div><label for="vote" class="label label-default">votes: 0</label></div>
-                                <div><label for="answer" class="label label-default">answers: {{ $question->answertimes }}</label></div>
-                                <div><label for="view" class="label label-default">views: {{ $question->readtimes }}</label></div>
+                                <div><label for="vote" class="label label-default">得票: 0</label></div>
+                                <div><label for="answer" class="label label-default">回答: {{ $question->answertimes }}</label></div>
+                                <div><label for="view" class="label label-default">浏览: {{ $question->readtimes }}</label></div>
                             </div>
                         </div>
                     @endforeach
@@ -173,12 +173,12 @@
 
     <div class="col-md-3">
       <div class="questions-create">
-          <p>All Questions About Development</p>
-          <p><a class="btn btn-success btn-block" href="/questions/create" role="button">Ask Questions</a></p>
-          <p>Begin!</p>
+          <p>今天，你编程遇到了什么问题呢？</p>
+          <p><a class="btn btn-success btn-block" href="/questions/create" role="button">提问</a></p>
+          <p>开始吧!</p>
       </div>
       <div class="list-group recommend">
-          <h4 class="recommend-name">Recommend author</h4>
+          <h4 class="recommend-name">推荐作者</h4>
           <ol>
               <li>
                   <img src="/uploads/avatars/default.jpg" />

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Ask your new question')
+@section('title', '提问')
 
 @section('css')
 	<link href="/css/simplemde.min.css" rel="stylesheet">
@@ -14,7 +14,7 @@
 			<form action="/questions" method="POST" class="form-horizontal">
 				{{ csrf_field() }}
 				<div class="form-group">
-					<label for="title" class="col-md-2 control-label">Title</label>
+					<label for="title" class="col-md-2 control-label">标题</label>
 					<div class="col-md-4">
 						<div class="input-group">
 							<input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}"
@@ -25,13 +25,13 @@
 						    </span>
 							@endif
 							<span class="input-group-btn">
-			            		<button type="submit" class="btn btn-primary">Submit</button>
+			            		<button type="submit" class="btn btn-primary">发布</button>
 			            	</span>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="tags" class="col-md-2 control-label">Tags</label>
+					<label for="tags" class="col-md-2 control-label">标签</label>
 					<div class="col-md-4" >
 						<div class="input-group">
 							<select class="form-control" multiple="multiple" name="tags[]" id="task-list">
@@ -78,7 +78,7 @@
 		$("select").select2({
 			tokenSeparators: [",", " "],
 			maximumSelectionLength: 5,
-			placeholder: "Select tags",
+			placeholder: "选择标签",
 			theme: "bootstrap"
 		});
 	</script>

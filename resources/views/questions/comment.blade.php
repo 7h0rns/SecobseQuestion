@@ -12,7 +12,7 @@
 			<div class="answer-content">
 				<article id="answer_content">@MarkDown($as->html_content)</article>
 				<div class="answer-user-info">
-					<span class="answered-time">answered&nbsp;{{ $as->created_at }}</span>
+					<span class="answered-time">{{ $as->created_at }}回答</span>
 					<img src="/uploads/avatars/{{ $as->avatar}}" alt="{{ $as->avatar}}" width="32" height="32"/>
 					<a href="/profile/{{ $as->answer_name }}">{{$as->answer_name}}</a>
 				</div>
@@ -24,7 +24,7 @@
 				</div>
 			@endforeach
 			<div class="comment">
-				<div class="comments">add a comment(Total comments:{{$as->comments->count('id')}})</div>
+				<div class="comments">{{$as->comments->count('id')}}评论</div>
 				<div class="addComment" style="display: none">
 					<form action="{{ route('comment.store') }}" method="post" class="form-horizontal">
 						{{ csrf_field() }}
@@ -32,7 +32,7 @@
 						<input type="hidden" name="id" value="{{$question->id}}">
 						<input type="hidden" name="commentable_type" value="App\Answer">
 						<textarea name="content" placeholder="填写评论" required></textarea>
-						<button type="submit" class="btn btn-default">Comment</button>
+						<button type="submit" class="btn btn-default">评论</button>
 					</form>
 				</div>
 			</div>

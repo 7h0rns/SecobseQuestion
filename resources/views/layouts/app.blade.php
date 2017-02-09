@@ -49,15 +49,15 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav nav-title">
-                    <li><a href="{{ url('') }}">Questions</a></li>
+                    <li><a href="{{ url('') }}">问答</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a data-toggle="modal" data-target="#login">Login</a></li>
-                        <li><a data-toggle="modal" data-target="#register">Register</a></li>
+                        <li><a data-toggle="modal" data-target="#login">登 录</a></li>
+                        <li><a data-toggle="modal" data-target="#register">注 册</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -66,13 +66,13 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/profile', Auth::user()->name) }}"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
-                                <li><a href="{{ url('/home') }}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                                <li><a href="{{ url('/profile', Auth::user()->name) }}"><i class="fa fa-user" aria-hidden="true"></i> 个人信息</a></li>
+                                <li><a href="{{ url('/home') }}"><i class="fa fa-home" aria-hidden="true"></i> 控制面板</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                       <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                                       <i class="fa fa-sign-out" aria-hidden="true"></i> 退出登录
                                     </a>
 
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -92,8 +92,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <div class="panel-heading">Login</div>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                    <div class="panel-heading">登录</div>
                 </div>
 
                 <div class="modal-body">
@@ -104,7 +104,7 @@
                             <input type="hidden" name="isactive" value="1">
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Username</label>
+                                <label for="name" class="col-md-4 control-label">用户名</label>
 
                                 <div class="col-md-6 input-group">
                                     <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
@@ -119,7 +119,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password</label>
+                                <label for="password" class="col-md-4 control-label">密码</label>
 
                                 <div class="col-md-6 input-group">
                                     <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
@@ -137,7 +137,7 @@
                                 <div class="col-md-6 col-md-offset-4">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="remember"> Remember Me
+                                            <input type="checkbox" name="remember"> 记住我
                                         </label>
                                     </div>
                                 </div>
@@ -146,11 +146,11 @@
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Login
+                                        登录
                                     </button>
 
                                     <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                        Forgot Your Password?
+                                        忘记密码？
                                     </a>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>
@@ -169,8 +169,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <div class="panel-heading">Register</div>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+                    <div class="panel-heading">注册</div>
                 </div>
 
                 <div class="modal-body">
@@ -179,7 +179,7 @@
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Name</label>
+                                <label for="name" class="col-md-4 control-label">用户名</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus>
@@ -193,7 +193,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                <label for="email" class="col-md-4 control-label">邮箱地址</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
@@ -207,7 +207,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password</label>
+                                <label for="password" class="col-md-4 control-label">密码</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password">
@@ -221,7 +221,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                                <label for="password-confirm" class="col-md-4 control-label">确认密码</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
@@ -237,7 +237,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Register
+                                        注册
                                     </button>
                                 </div>
                             </div>
@@ -246,7 +246,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>

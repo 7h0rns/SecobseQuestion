@@ -15,7 +15,7 @@
 				{{ method_field('PUT') }}
 				{{ csrf_field() }}
 				<div class="form-group">
-					<label for="title" class="col-md-2 control-label">Title</label>
+					<label for="title" class="col-md-2 control-label">标题</label>
 					<div class="col-md-4">
 						<div class="input-group">
 							<input id="title" type="text" class="form-control" name="title"
@@ -26,13 +26,13 @@
 						    </span>
 							@endif
 							<span class="input-group-btn">
-			            	<button type="submit" class="btn btn-primary">Save</button>
+			            	<button type="submit" class="btn btn-primary">保存</button>
 			            </span>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="tags" class="col-md-2 control-label">Tags</label>
+					<label for="tags" class="col-md-2 control-label">标签</label>
 					<div class="col-md-4">
 						<select class="form-control" multiple="multiple" name="tags[]" id="task-list">
 							@foreach($question->tags as $tag)
@@ -76,7 +76,7 @@
 		$("select").select2({
 			tokenSeparators: [",", " "],
 			maximumSelectionLength: 5,
-			placeholder: "Select tags",
+			placeholder: "选择标签",
 			theme: "bootstrap"
 		});
 	</script>

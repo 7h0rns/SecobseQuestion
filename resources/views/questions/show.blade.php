@@ -47,7 +47,7 @@
 								</div>
 
 								<div class="user-info">
-									<span class="asked-time">asked&nbsp;{{ $question->created_at }}</span>
+									<span class="asked-time">{{ $question->created_at }}提问</span>
 									<img src="/uploads/avatars/{{ $userAvatar }}" alt="{{ $userAvatar }}" width="32" height="32"/>
 								  <a href="/profile/{{ $question->username }}">{{ $question->username }}</a>
 								</div>
@@ -55,7 +55,7 @@
 						</div>
 					</div>
 					<div class="answers">
-						<span>{{$count}}&nbsp;Answer</span>
+						<span>{{$count}}个回答</span>
 					</div>
 				</div>
 				@include('questions.comment')
@@ -64,9 +64,9 @@
 			<div class="col-md-3 col-sm-3">
 				<div class="question-sidebar">
 					<div class="question-state">
-						<p>asked&nbsp;&nbsp;&nbsp;<span>{{ $question->created_at }}</span></p>
-						<p>viewed&nbsp;&nbsp;&nbsp;<span>{{ $question->readtimes }}</span></p>
-						<p>answred&nbsp;&nbsp;&nbsp;<span>10</span></p>
+						<p>提问&nbsp;&nbsp;&nbsp;<span>{{ $question->created_at }}</span></p>
+						<p>得票&nbsp;&nbsp;&nbsp;<span>{{ $question->readtimes }}</span></p>
+						<p>回答&nbsp;&nbsp;&nbsp;<span>10</span></p>
 					</div>
 					<div class="related">
 						<h4>Related</h4>
@@ -131,7 +131,7 @@
 	@if (Auth::guest())
 		<div class="container">
 			<h3 align="center">登录后可以提交回答
-				<button type="button" id="tologin" class="btn btn-primary">login</button>
+				<button type="button" id="tologin" class="btn btn-primary">登录</button>
 			</h3>
 		</div>
 	@else
@@ -141,7 +141,7 @@
 				<input type="hidden" name="question_id" id="question_id" value="{{ $question->id }}">
 				<textarea name="answer_content" id="answerEditor"></textarea>
 				{!! csrf_field() !!}
-				<button type="submit" id="tsave" class="btn btn-primary">Submit Answer</button>
+				<button type="submit" id="tsave" class="btn btn-primary">提交回答</button>
 			</form>
 
 
