@@ -11,12 +11,6 @@
 
 <div class="container">
   <div class="row">
-      @if(Session::has('logout'))
-          <div class="alert alert-success">
-              <button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
-              {{ Session::get('logout') }}
-          </div>
-      @endif
     <div class="col-md-9">
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#recent" role="tab" data-toggle="tab">最新的</a></li>
@@ -27,13 +21,6 @@
         {{--rencentQuestions--}}
       <div class="tab-content question-content">
         <div role="tabpanel" class="tab-pane active" id="recent">
-              @if(Session::has('status'))
-              <div class="alert alert-success">
-                  <button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  {{ Session::get('status') }}
-              </div>
-              @endif
-
                   @foreach($questions as $question)
                   <div class="singleQuestion">
                       <div class="count-wide">
@@ -76,13 +63,6 @@
 
           {{--noAnswerQuestions--}}
         <div role="tabpanel" class="tab-pane" id="noanswer">
-                @if(Session::has('status'))
-                    <div class="alert alert-success">
-                        <button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        {{ Session::get('status') }}
-                    </div>
-                @endif
-
                     @foreach($noAnswerQuestion as $question)
                         <div class="singleQuestion">
                             <div class="count-wide">
@@ -124,12 +104,6 @@
 
           {{--mostViewQuestions--}}
         <div role="tabpanel" class="tab-pane" id="mostviewed">
-                @if(Session::has('status'))
-                    <div class="alert alert-success">
-                        <button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        {{ Session::get('status') }}
-                    </div>
-                @endif
 
                     @foreach($mostViewQuestion as $question)
                         <div class="singleQuestion">

@@ -12,53 +12,48 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 
 class AnswerController extends Controller
 {
-	/**
-	 * Instantiate AnswerController instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'answer_content' => 'required'
+        ]);
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request)
-	{
-		$this->validate($request, [
-			'answer_content' => 'required'
-		]);
+        $question_id = $request->get('question_id');
+        $content = $request->input('answer_content');
+        if (Auth::user()) {
+            $user = Auth::user();
+        } else {
+            flash('你还没有登录，请登录后再进行回答', 'warning');
+            return redirect('/questions/' . $question_id);
+        }
 
-		$question_id = $request->get('question_id');
-		$content = $request->input('answer_content');
-		$user = Auth::user();
+        $query = \DB::table('answers')->select('answer_name')
+            ->where('question_id', $question_id)
+            ->where('answer_name', $user->name)
+            ->get()->all();
 
-		$query = \DB::table('answers')->select('answer_name')
-			->where('question_id', $question_id)
-			->where('answer_name', $user->name)
-			->get()->all();
+        if ($query) {
+            flash('你已经回答了', 'danger');
+        } else {
+            $answer = Answer::create([
 
-		if ($query) {
-			session()->flash('status', 'You have answered!');
-		} else {
-			$answer = Answer::create([
+                'answer_name' => $user->name,
+                'answer_content' => $content,
+                'html_content' => Markdown::convertToHtml($content),
+                'avatar' => $user->avatar,
+                'question_id' => $question_id,
 
-				'answer_name' => $user->name,
-				'answer_content' => $content,
-				'html_content' => Markdown::convertToHtml($content),
-				'avatar' => $user->avatar,
-				'question_id' => $question_id,
+            ]);
 
-			]);
+            flash('回答成功', 'success');
+        }
 
-			session()->flash('status', 'Answer has been published successfully!');
-		}
-
-		return redirect('/questions/' . $question_id);
-	}
+        return redirect('/questions/' . $question_id);
+    }
 }

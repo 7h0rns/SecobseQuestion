@@ -7,35 +7,43 @@ use App\Comment;
 use App\Http\Requests;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Auth;
+
 class CommentController extends Controller
 {
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request){
-		$this->validate($request, [
-			'content' => 'required',
-		]);
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'content' => 'required',
+        ]);
 
-		$id = $request->get('id');
-		$commentable_id = $request->get('commentable_id');
-		$content = $request->get('content');
-		$user = Auth::user();
+        $id = $request->get('id');
+        $commentable_id = $request->get('commentable_id');
+        $content = $request->get('content');
 
-		$comment = Comment::create([
-			'content' =>  $content,
-			'html_content' => Markdown::convertToHtml($content),
-			'commentable_id' => $commentable_id,
-			'commentable_type' => $request->get('commentable_type'),
-			'username' => $user->name,
-			'user_id' =>$user->id,
-		]);
+        if (Auth::user()) {
+            $user = Auth::user();
+        } else {
+            flash('你还没有登录，请登录后再进行评论','warning' );
+            return redirect('/questions/' . $id);
+        }
 
-		session()->flash('status', 'Comment has been published successfully!');
+        $comment = Comment::create([
+            'content' => $content,
+            'html_content' => Markdown::convertToHtml($content),
+            'commentable_id' => $commentable_id,
+            'commentable_type' => $request->get('commentable_type'),
+            'username' => $user->name,
+            'user_id' => $user->id,
+        ]);
 
-		return redirect('/questions/'.$id);
-	}
+        flash('评论成功','success');
+
+        return redirect('/questions/' . $id);
+    }
 }

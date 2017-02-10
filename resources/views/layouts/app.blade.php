@@ -87,6 +87,16 @@
             </div>
         </div>
     </nav>
+
+    <div class="container">
+        @if (session()->has('flash_notification.message'))
+            <div class="alert alert-{{ session('flash_notification.level') }}">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                {!! session('flash_notification.message') !!}
+            </div>
+        @endif
+    </div>
     <!-- login -->
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -257,6 +267,12 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#flash-overlay-modal').modal();
+            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+        });
+    </script>
     @yield('js')
 </body>
 </html>

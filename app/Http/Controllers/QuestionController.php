@@ -61,7 +61,7 @@ class QuestionController extends Controller
 
 		$question->tags()->attach($request->input('tags'));
 
-		session()->flash('status', 'Question has been published successfully!');
+		flash('提问成功!', 'success');
 
 		return redirect('/');
 	}
@@ -124,7 +124,7 @@ class QuestionController extends Controller
 
 		$question->save();
 
-		session()->flash('status', 'Question has been updated successfully!');
+        flash('问题更新成功!', 'success');
 
 		return redirect('/questions/' . $id);
 	}

@@ -9,13 +9,6 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		@if(Session::has('status'))
-			<div class="alert alert-success">
-				<button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
-				{{ Session::get('status') }}
-			</div>
-		@endif
-
 		<div class="col-md-9">
 			<blockquote>标签: <span class="label label-success">{{ $tag->name }}</span></blockquote>
 			@foreach($questions as $article)

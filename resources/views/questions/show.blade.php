@@ -10,19 +10,8 @@
 @endsection('css')
 
 @section('content')
-    <style>
-        .CodeMirror, .CodeMirror-scroll {
-            height: 200px;
-        }
-    </style>
     <div class="container">
         <div class="row">
-            @if(Session::has('status'))
-                <div class="alert alert-success">
-                    <button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{ Session::get('status') }}
-                </div>
-            @endif
             <div class="question-header">
                 <span class="title">{{ $question->title }}</span>
             </div>
@@ -70,29 +59,19 @@
 
                 @include('questions.comment')
 
-                @if (Auth::guest())
-                    <div class="container">
-                        <h3 align="center">登录后可以提交回答
-                            <button type="button" id="tologin" class="btn btn-primary">登录</button>
-                        </h3>
-                    </div>
-                @else
-
-                        <div><h3>撰写回答:</h3></div>
-                        <form id="answer" action="/answer" method="POST" class="form-horizontal">
-                            <input type="hidden" name="question_id" id="question_id" value="{{ $question->id }}">
-                            <textarea name="answer_content" id="answerEditor"></textarea>
-                            {!! csrf_field() !!}
-                            <button type="submit" id="tsave" class="btn btn-lg btn-success pull-right">提交回答</button>
-                        </form>
-
-
-                        @if ($errors->has('mdContent'))
-                            <span class="help-block">
+                <div><h3>撰写回答:</h3></div>
+                <form id="answer" action="/answer" method="POST" class="form-horizontal">
+                    <input type="hidden" name="question_id" id="question_id" value="{{ $question->id }}">
+                    <textarea name="answer_content" id="answerEditor"></textarea>
+                    {!! csrf_field() !!}
+                    <button type="submit" id="tsave" class="btn btn-lg btn-success pull-right">提交回答</button>
+                </form>
+                @if ($errors->has('mdContent'))
+                    <span class="help-block">
 				                <strong>{{ $errors->first('mdContent') }}</strong>
 			                </span>
-                        @endif
                 @endif
+
             </div>
 
             <div class="col-md-3 col-sm-3">
@@ -169,10 +148,6 @@
     <script src="/js/simplemde.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#tologin').click(function () {
-                $('#login').modal('show');
-            });
-
             $('.comments').click(function () {
                 $comment = $(this).closest('.comment');
                 $comment.siblings().find('.addComment').slideUp();

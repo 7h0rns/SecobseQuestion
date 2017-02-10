@@ -33,7 +33,7 @@
                             <input type="hidden" name="commentable_id" value="{{ $as->id }}">
                             <input type="hidden" name="id" value="{{$question->id}}">
                             <input type="hidden" name="commentable_type" value="App\Answer">
-                            <textarea name="content" class="form-control" placeholder="填写评论,支持 Markdown 语法"
+                            <textarea name="content" rows="1" class="form-control" placeholder="填写评论,支持 Markdown 语法"
                                       required></textarea>
                             <button type="submit" class="btn btn-default">评论</button>
                         </form>

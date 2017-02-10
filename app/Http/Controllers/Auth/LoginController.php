@@ -80,7 +80,8 @@ class LoginController extends Controller
                     ->update(['isactive' => $request->input('isactive')]);
 
         $this->clearLoginAttempts($request);
-        session()->flash('status', '欢迎回来');
+        flash('欢迎回来!', 'success');
+
         return $this->authenticated($request, $this->guard()->user())
                 ?: redirect()->intended($this->redirectPath());
     }
@@ -103,7 +104,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/')->with('logout', 'Logout Successfully!');
+        return redirect('/');
     }
 
 }
