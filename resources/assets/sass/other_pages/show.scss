@@ -12,8 +12,11 @@ $user-info-bg-color: #e0eaf1;
 $user-info-name-color: #07c;
 $user-info-name-hover-color: #3af;
 $answer-times-color: #5fba7d;
+$comment-color: #999;
+$comment-font-color: #242729;
+$comment-bg-color: #f6f6f6;
 
-$x-bigMedia-width: 1080px;
+$x-bigMedia-width: 1199px;
 $bigMedia-width: 991px;
 $ordinaryMedia-width: 768px;
 $smallMedia-width: 550px;
@@ -218,59 +221,58 @@ $smallMedia-width: 550px;
 
 //answers and comments style
 
-.question-answers {
+.question-answers-mainbar {
   @include border-bottom;
   margin-bottom: 1.75em;
   padding-bottom: 1.75em;
-  position: relative;
-  .answer-votes {
-    line-height: 1;
-    margin-top: -1em;
-    @include bigMedia {
-      line-height: .6;
-      margin-top: -.6em;
-    }
-    @include ordinaryMedia {
-      line-height: .4;
-      position: absolute;
-      top: .7em;
-      z-index: 1;
-    }
-    .vote-top {
-      font-size: 1.75em;
-      color: $grey;
+  .question-answers {
+    position: relative;
+    .answer-votes {
+      line-height: 1;
+      margin-top: -1em;
       @include bigMedia {
-        font-size: 1.5em;
+        line-height: .6;
+        margin-top: -.6em;
       }
       @include ordinaryMedia {
-        font-size: 1em;
+        line-height: .4;
+        position: absolute;
+        top: .7em;
+        z-index: 1;
       }
-    }
-
-    .vote-times {
-      display: block;
-      width: 1.75em;
-      text-align: center;
-      color: $grey;
-      @include ordinaryMedia {
-        width: 1.2em;
+      .vote-top {
+        font-size: 1.75em;
+        color: $grey;
+        @include bigMedia {
+          font-size: 1.5em;
+        }
+        @include ordinaryMedia {
+          font-size: 1em;
+        }
       }
-    }
 
-    .vote-bottom {
-      @extend .vote-top;
-    }
-  }
+      .vote-times {
+        display: block;
+        width: 1.75em;
+        text-align: center;
+        color: $grey;
+        @include ordinaryMedia {
+          width: 1.2em;
+        }
+      }
 
-  .answer-comment {
-    @include ordinaryMedia {
-      width: 90%;
-      margin-left: 2.5em;
+      .vote-bottom {
+        @extend .vote-top;
+      }
     }
 
     .answer-content {
       margin-bottom: 1em;
       padding-bottom: 1em;
+      @include ordinaryMedia {
+        width: 90%;
+        margin-left: 2.5em;
+      }
       article {
         color: $qh-font-color;
       }
@@ -313,21 +315,64 @@ $smallMedia-width: 550px;
         }
       }
     }
+  }
 
-    .comment-content {
-      @include border-bottom;
-      width: 56em !important;
-      @include x-bigMedia {
-        width: 46em !important;
-      }
-      @include bigMedia {
-        width: 36em !important;
-      }
+  .answer-comment {
+    .comments {
+      margin-bottom: .5em;
+      color: $comment-color;
       @include ordinaryMedia {
-        width: 34em !important;
+        margin-left: 3em;
+      }
+      @include smallMedia {
+        margin-left: auto;
+      }
+    }
+
+    .addComment {
+      display: none;
+      border-radius: 2px;
+      padding: 1.5em;
+      background-color: $comment-bg-color;
+      color: $comment-font-color;
+      @include ordinaryMedia {
+        margin-left: 3em;
+      }
+      @include smallMedia {
+        margin-left: auto;
+      }
+      .comment-content {
+        padding: {
+          top: .5em;
+          bottom: .5em;
+        }
+        border-bottom: 2px dotted $qh-borbtn-color;
+
+        span.username {
+          a {
+            text-decoration: none;
+            color: $user-info-name-color;
+            &:hover {
+             color: $user-info-name-hover-color;
+            }
+          }
+        }
+
+        span.createdtime {
+          color: $comment-color;
+        }
+      }
+
+      .comment-submit {
+        margin-top: 1em;
       }
     }
   }
+}
+
+.CodeMirror, .CodeMirror-scroll {
+    min-height: inherit !important;
+    height: 15em !important;
 }
 
 //question sidebar style

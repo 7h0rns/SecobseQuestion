@@ -21,11 +21,11 @@
                         <div class="col-md-1 col-sm-1">
                             <div class="question-vote">
                                 <a href="#" class="vote-top" data-toggle="tooltip" data-placement="top"
-                                   title="This question shows research effort; it is useful and clear"><i
+                                   title="问题对人有帮助，内容完整，我也想知道答案"><i
                                             class="fa fa-caret-up fa-2x" aria-hidden="true"></i></a>
                                 <span class="vote-times">1</span>
                                 <a href="#" class="vote-bottom" data-toggle="tooltip" data-placement="bottom"
-                                   title="This question does not show any research effort; it is unclear or not useful"><i
+                                   title="问题没有实际价值，缺少关键内容，没有改进余地"><i
                                             class="fa fa-caret-down fa-2x" aria-hidden="true"></i></a>
                             </div>
                         </div>
@@ -59,13 +59,18 @@
 
                 @include('questions.comment')
 
-                <div><h3>撰写回答:</h3></div>
-                <form id="answer" action="/answer" method="POST" class="form-horizontal">
-                    <input type="hidden" name="question_id" id="question_id" value="{{ $question->id }}">
-                    <textarea name="answer_content" id="answerEditor"></textarea>
-                    {!! csrf_field() !!}
-                    <button type="submit" id="tsave" class="btn btn-lg btn-success pull-right">提交回答</button>
-                </form>
+                <div class="panel panel-default">
+                  <div class="panel-heading"><h4>撰写回答:</h4></div>
+                  <div class="panel-body">
+                    <form id="answer" action="/answer" method="POST" class="form-horizontal">
+                        <input type="hidden" name="question_id" id="question_id" value="{{ $question->id }}">
+                        <textarea name="answer_content" id="answerEditor"></textarea>
+                        {!! csrf_field() !!}
+                        <button type="submit" id="tsave" class="btn btn-success pull-right">提交回答</button>
+                    </form>
+                  </div>
+                </div>
+
                 @if ($errors->has('mdContent'))
                     <span class="help-block">
 				                <strong>{{ $errors->first('mdContent') }}</strong>
@@ -82,7 +87,7 @@
                         <p>回答&nbsp;&nbsp;&nbsp;<span>10</span></p>
                     </div>
                     <div class="related">
-                        <h4>Related</h4>
+                        <h4>相关问题</h4>
                         <div class="related-list">
                             <div class="list-content">
                                 <div class="answer-times">
