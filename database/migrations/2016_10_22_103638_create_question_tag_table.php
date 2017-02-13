@@ -14,12 +14,10 @@ class CreateQuestionTagTable extends Migration
     public function up()
     {
         Schema::create('question_tag', function (Blueprint $table) {
+            $table->increments('id');
 			$table->integer('question_id')->unsigned()->index();
-			$table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-
 			$table->integer('tag_id')->unsigned()->index();
-			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
-
+            $table->timestamps();
         });
     }
 

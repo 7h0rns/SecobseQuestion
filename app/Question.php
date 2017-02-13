@@ -58,12 +58,14 @@ class Question extends Model
 	 */
 	public function tags()
 	{
-		return $this->belongsToMany('App\Tag');
+		return $this->belongsToMany(Tag::class)->withTimestamps();
 	}
-	/**
-	 * Get the answers for the question.
-	 */
-	public function answers()
+
+    /**
+     * Get the answers for the question.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function answers()
 	{
 		return $this->hasMany('App\Answer');
 	}

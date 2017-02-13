@@ -33,8 +33,7 @@ class QuestionController extends Controller
 	 */
 	public function create()
 	{
-		$tags = Tag::pluck('name', 'id')->all();
-		return view('questions.createQuestion', compact('tags'));
+		return view('questions.createQuestion');
 	}
 
 	/**
@@ -43,27 +42,22 @@ class QuestionController extends Controller
 	 * @param  \Illuminate\Http\Request $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request)
+	public function store(Requests\StoreQuestionRequest $request)
 	{
-		$this->validate($request, [
-			'title' => 'required|max:50',
-			'mdContent' => 'required',
-		]);
+	    $tags = $this->normalizeTag($request->get('tags'));
+		$data = [
+            'title' => $request->get('title'),
+            'content' => $request->get('mdContent'),
+            'username' => Auth::user()->name,
+        ];
 
-		$title = $request->input('title');
-		$mdContent = $request->input('mdContent');
+		$question = Question::create($data);
 
-		$question = Question::create([
-			'title' => $title,
-			'content' => $mdContent,
-			'username' => Auth::user()->name,
-		]);
-
-		$question->tags()->attach($request->input('tags'));
+		$question->tags()->attach($tags);
 
 		flash('提问成功!', 'success');
 
-		return redirect('/');
+		return redirect()->route('questions.show', [$question->id]);
 	}
 
 	/**
@@ -74,7 +68,7 @@ class QuestionController extends Controller
 	 */
 	public function show($id)
 	{
-		$question = Question::findOrFail($id);
+		$question =  Question::with('tags')->findOrFail($id);;
 
 		$question->readtimes += 1;
 
@@ -98,9 +92,13 @@ class QuestionController extends Controller
 	 */
 	public function edit($id)
 	{
-		$question = Question::findOrFail($id);
-		$tags = Tag::all();
-		return view('questions.edit', compact('question', 'tags'));
+		$question =  Question::with('tags')->findOrFail($id);
+
+		if (Auth::user()->owns($question)){
+            return view('questions.edit', compact('question'));
+        }
+
+		return back();
 	}
 
 	/**
@@ -110,23 +108,21 @@ class QuestionController extends Controller
 	 * @param  int $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id)
+	public function update(Requests\StoreQuestionRequest $request, $id)
 	{
-		$this->validate($request, [
-			'mdContent' => 'required',
-		]);
+		$question = Question::with('tags')->findOrFail($id);
+        $tags = $this->normalizeTag($request->get('tags'));
 
-		$question = Question::findOrFail($id);
+		$question->update([
+            'title' => $request->get('title'),
+            'content' => $request->get('mdContent')
+        ]);
 
-		$question->content = $request->input('mdContent');
-
-		$question->tags()->sync($request->input('tags'));
-
-		$question->save();
+		$question->tags()->sync($tags);
 
         flash('问题更新成功!', 'success');
 
-		return redirect('/questions/' . $id);
+        return redirect()->route('questions.show', [$question->id]);
 	}
 
 	/**
@@ -141,5 +137,25 @@ class QuestionController extends Controller
 
 		$question->delete();
 	}
+
+    /**
+     * create new tag and increment questions_count
+     *
+     * @param array $tags
+     * @return array
+     */
+    private function normalizeTag(array $tags)
+    {
+        return collect($tags)->map(function ($tag){
+            if (is_numeric($tag)){
+                Tag::find($tag)->increment('questions_count');
+                return (int)$tag;
+            }
+            $newTag = Tag::create(['name' => $tag, 'questions_count' => 1]);
+
+            return $newTag->id;
+        })->toArray();
+    }
+
 
 }

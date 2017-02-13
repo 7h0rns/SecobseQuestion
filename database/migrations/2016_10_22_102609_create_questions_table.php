@@ -26,6 +26,7 @@ class CreateQuestionsTable extends Migration
 			$table->integer('votetimes')->default(0);
 			$table->integer('readtimes')->unsigned()->default(0);
 			$table->integer('answertimes')->default(0);
+			$table->integer('followers_count')->default(1);
 			$table->timestamp('published_at');
 			$table->timestamps();
 

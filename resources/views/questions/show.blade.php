@@ -43,6 +43,12 @@
                                     @endunless
                                 </div>
 
+                                <div class="action">
+                                    @if(Auth::check() && Auth::user()->owns($question))
+                                        <span class="edit"><a href="/questions/{{$question->id}}/edit">编辑</a></span>
+                                    @endif
+                                </div>
+
                                 <div class="user-info">
                                     <span class="asked-time">{{ $question->created_at }}提问</span>
                                     <img src="/uploads/avatars/{{ $userAvatar }}" alt="{{ $userAvatar }}" width="32"
@@ -84,7 +90,7 @@
                     <div class="question-state">
                         <p>提问&nbsp;&nbsp;&nbsp;<span>{{ $question->created_at }}</span></p>
                         <p>得票&nbsp;&nbsp;&nbsp;<span>{{ $question->readtimes }}</span></p>
-                        <p>回答&nbsp;&nbsp;&nbsp;<span>10</span></p>
+                        <p>回答&nbsp;&nbsp;&nbsp;<span>{{ $count }}</span></p>
                     </div>
                     <div class="related">
                         <h4>相关问题</h4>

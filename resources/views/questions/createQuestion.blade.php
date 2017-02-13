@@ -17,7 +17,7 @@
                     <div class="panel-body">
                         <form action="/questions" method="POST">
                             {{ csrf_field() }}
-                            <div class="form-group">
+                            <div class="form-group{{ $errors->has('title')?'has-error':'' }}">
                                 <label for="title">标题</label>
                                 <input id="title" type="text" class="form-control" name="title"
                                        value="{{ old('title') }}"
@@ -32,23 +32,17 @@
                                 <label for="tags">标签</label>
                                 <div class="input-group">
                                     <select class="form-control" multiple="multiple" name="tags[]" id="task-list">
-                                        @foreach($tags as $id=>$name)
-                                            <option id="tag" value="{{ $id }}">{{$name}}</option>
-                                        @endforeach
                                     </select>
                                     @if ($errors->has('tags'))
                                         <div class="alert alert-danger">
                                             <strong>{{ $errors->first('tags') }}</strong>
                                         </div>
                                     @endif
-                                    <span class="input-group-btn">
-								        <button type="button" class="btn btn-success" id="add">添加标签</button>
-							        </span>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group{{ $errors->has('mdContent')?'has-error':'' }}">
                                 <label for="mdContent">描述</label>
-                                <textarea name="mdContent" id="ID"></textarea>
+                                <textarea name="mdContent" id="ID">{!! old('mdContent') !!}</textarea>
                                 @if ($errors->has('mdContent'))
                                     <span class="help-block">
 				                        <strong>{{ $errors->first('mdContent') }}</strong>
@@ -63,23 +57,50 @@
             </div>
         </div>
     </div>
-    </div>
-    {{--Modal--}}
-    @include('tags.createtag')
+
 @endsection
 
 @section('js')
     <script src="/js/simplemde.min.js"></script>
     <script src="/js/select2.min.js"></script>
-    <link href="http://cdn.bootcss.com/toastr.js/2.1.3/toastr.min.css" rel="stylesheet">
-    <script src="http://cdn.bootcss.com/toastr.js/2.1.3/toastr.min.js"></script>
-    <script src="/	js/tag.js"></script>
     <script type="text/javascript">
+        function formatTag (tag) {
+            return "<div class='select2-result-repository clearfix'>" +
+            "<div class='select2-result-repository__meta'>" +
+            "<div class='select2-result-repository__title'>" +
+            tag.name ? tag.name : "Laravel"   +
+                "</div></div></div>";
+        }
+
+        function formatTagSelection (tag) {
+            return tag.name || tag.text;
+        }
+
         $("select").select2({
-            tokenSeparators: [",", " "],
+            tags: true,
+            minimumInputLength: 2,
             maximumSelectionLength: 5,
             placeholder: "选择标签",
-            theme: "bootstrap"
+            theme: "bootstrap",
+            ajax: {
+                url: '/api/tags',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term
+                    };
+                },
+                processResults: function (data, params) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            },
+            templateResult: formatTag,
+            templateSelection: formatTagSelection,
+            escapeMarkup: function (markup) { return markup; }
         });
     </script>
     <script>

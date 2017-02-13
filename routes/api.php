@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+Route::get('/tags', function (Request $request) {
+    $tags = \App\Tag::select(['id','name'])
+        ->where('name','like','%'.$request->query('q').'%')
+        ->get();
+    return $tags;
+})->middleware('api');

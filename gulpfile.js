@@ -27,7 +27,6 @@ elixir(function (mix) {
         .copy('node_modules/select2/dist/js/select2.min.js', 'public/js/select2.min.js')
         .copy('node_modules/select2/dist/css/select2.min.css', 'public/css/select2.min.css')
         .copy('node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css', 'public/css/select2-bootstrap.min.css')
-        .copy('resources/assets/js/tag.js', 'public/js/tag.js')
         .webpack('app.js');
 })
 ;
