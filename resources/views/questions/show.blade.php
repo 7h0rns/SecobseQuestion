@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="answers">
-                        <span>{{$count}}个回答</span>
+                        <span>{{$question->answertimes}}个回答</span>
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@
                     <div class="question-state">
                         <p>提问&nbsp;&nbsp;&nbsp;<span>{{ $question->created_at }}</span></p>
                         <p>得票&nbsp;&nbsp;&nbsp;<span>{{ $question->readtimes }}</span></p>
-                        <p>回答&nbsp;&nbsp;&nbsp;<span>{{ $count }}</span></p>
+                        <p>回答&nbsp;&nbsp;&nbsp;<span>{{ $question->answertimes }}</span></p>
                     </div>
                     <div class="related">
                         <h4>相关问题</h4>

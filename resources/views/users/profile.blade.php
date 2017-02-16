@@ -57,6 +57,9 @@
         </div>
     </div>
 </div>
+	<div id="app">
+		<example></example>
+	</div>
 @endsection
 
 @section('js')

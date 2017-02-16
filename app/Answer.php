@@ -15,8 +15,12 @@ class Answer extends Model
 	 */
 	protected $table = 'answers';
 
-	protected $fillable = ['answer_name', 'answer_content','html_content','question_id','avatar'];
+	protected $fillable = ['answer_name', 'answer_content','html_content','question_id','user_id','avatar'];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 	/**
 	 * Get the question that owns the answer.
 	 */
