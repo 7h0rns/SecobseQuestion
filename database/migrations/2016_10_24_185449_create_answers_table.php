@@ -15,11 +15,14 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned()->index();
 			$table->string('answer_name');
 			$table->longText('answer_content');
 			$table->longText('html_content');
-			$table->integer('question_id')->unsigned();
+			$table->integer('question_id')->unsigned()->index();
 			$table->string('avatar')->default('default.jpg');
+			$table->integer('votes_count')->default(0);
+            $table->integer('comments_count')->default(0);
 			$table->boolean('isadopt')->default(0);
             $table->timestamps();
 

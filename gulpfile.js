@@ -1,6 +1,6 @@
 const elixir = require('laravel-elixir');
 
-require('laravel-elixir-vue');
+require('laravel-elixir-vue-2');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,7 +13,7 @@ require('laravel-elixir-vue');
  |
  */
 
-elixir(function (mix) {
+elixir(mix => {
     mix.sass('app.scss')
         .sass('layout/nav.scss', 'public/css/other')
         .sass('other_pages/main.scss', 'public/css/other')

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
-use App\Question;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -48,9 +47,10 @@ class AnswerController extends Controller
                 'html_content' => Markdown::convertToHtml($content),
                 'avatar' => $user->avatar,
                 'question_id' => $question_id,
-
+                'user_id' => $user->id
             ]);
 
+            $answer->question()->increment('answertimes');
             flash('回答成功', 'success');
         }
 

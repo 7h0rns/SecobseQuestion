@@ -6,7 +6,7 @@
                     <div class="panel-heading">Example Component</div>
 
                     <div class="panel-body">
-                        I'm an example component!
+                        I'm an vue2.0 example component!
                     </div>
                 </div>
             </div>
@@ -16,8 +16,8 @@
 
 <script>
     export default {
-        ready() {
-            console.log('Component ready.')
+        mounted() {
+            console.log('Component mounted.')
         }
     }
 </script>

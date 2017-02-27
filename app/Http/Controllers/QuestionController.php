@@ -75,13 +75,12 @@ class QuestionController extends Controller
 		$userAvatar = DB::table('users')->where('name',$question->username)->value('avatar');
 
 		$answer = Answer::all()->where('question_id',$id);
-		$count = $answer->count('id');
-		$question->answertimes = $count;
+
 		$question->save();
 
 		$question->content = Markdown::convertToHtml($question->content);
 
-		return view('questions.show', compact('question','userAvatar','answer','count'));
+		return view('questions.show', compact('question','userAvatar','answer'));
 	}
 
 	/**

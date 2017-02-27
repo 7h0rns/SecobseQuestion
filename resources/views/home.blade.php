@@ -76,7 +76,6 @@
                   <input type="text" class="input-sm tagsInput form-control mr10 fillText" name="email"><button type="button" class="btn btn-sm btn-primary saveBtn" name="save">save</button>
                 </div>
               </p>
-
              </div>
            </div>
            <div class="panel-footer dashboard-footer">
