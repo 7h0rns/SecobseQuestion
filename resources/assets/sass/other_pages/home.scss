@@ -1,60 +1,60 @@
-// !!note!!: no responsive design
+//nav tab
+.navTab{
+	margin-top: 4em;
+}
+// user image
+.userImage {
+	width: 200px;
+	height: 200px;
+	-webkit-border-radius:50%;
+	-moz-border-radius:50%;
+	border-radius:50%;
+}
 
-.dashboard {
+// update user avatar
+.avatarButtons {
+	margin-top: 5px;
+}
 
-	// user image
-	.userImage {
-		width: 200px;
-		height: 200px;
-	}
-
-	// update user avatar
-	.avatarButtons {
-		margin-top: 5px;
-	}
-
-	// change default file input button style
-	.btn-file {
-		position: relative;
-		overflow: hidden;
-
-		input[type=file] {
-		    position: absolute;
-		    top: 0;
-		    right: 0;
-		    min-width: 100%;
-		    min-height: 100%;
-		    text-align: right;
-		    opacity: 0;
-		    outline: none;
-		    background: white;
-		    cursor: inherit;
-		}
-	}
-
-	.dashboard-footer {
-		position: relative;
-		span {
-			position: absolute;
-			right: 0;
-		}
+.badge {
+	a {
+		margin-top: -5px;
 	}
 }
 
+// change default file input button style
+.btn-file {
+	position: relative;
+	overflow: hidden;
 
-.detail-info { // have not include dashboard panel-heading
-
-	margin-top: 20px;
-
-	// change height to align
-	.panel {
-		min-height: 380px;
-		margin-left: 5px;
-		margin-right: 5px;
+	input[type=file] {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    min-width: 100%;
+	    min-height: 100%;
+	    text-align: right;
+	    opacity: 0;
+	    outline: none;
+	    background: white;
+	    cursor: inherit;
 	}
+}
+.addInfor {
+	cursor: pointer;
+	display: none;
+	input {
+		display: inline;
+		width: auto;
+		margin-right: 0.4em;
+	}
+}
 
-	// center content with two class, panel-heading
-	// panel-body
+//every tab content panel style
+.panel {
+	min-height: 380px;
+	margin-left: 5px;
+	margin-right: 5px;
 	.panel-heading {
 		text-align: center;
 	}
@@ -63,20 +63,11 @@
 		* {
 			text-align: center;
 		}
-	}
-	
-	//pagination
-	.pager {
-		height: 20px;
-		margin-top: 15px;
-		font-size: 12px;
-	}
-
-	// change edit, delete button postition
-	// to be optically the same
-	.badge {
-		a {
-			margin-top: -5px;
+		//pagination
+		.pager {
+			height: 20px;
+			margin-top: 15px;
+			font-size: 12px;
 		}
 	}
 }
