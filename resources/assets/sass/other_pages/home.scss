@@ -1,53 +1,97 @@
 //nav tab
-.navTab{
-	margin-top: 4em;
+.navTab {
+	height: 20em;
+	padding-top: 3em;
+	.nav-item	{
+		border-bottom: 1px solid #e6e6e6;
+		a{
+			font-size: 1.4em;
+			.badge {
+				margin-left: 1em;
+			}
+		}
+	}
 }
-// user image
-.userImage {
-	width: 200px;
-	height: 200px;
-	-webkit-border-radius:50%;
-	-moz-border-radius:50%;
-	border-radius:50%;
-}
+// user imformation
+#firstPage {
+	.panel-body {
+		text-align: center;
+		.userImage {
+			width: 200px;
+			height: 200px;
+			-webkit-border-radius:50%;
+			-moz-border-radius:50%;
+			border-radius:50%;
+		}
+		// update user avatar
+		.avatarButtons {
+			margin-top: 5px;
+			// change default file input button style
+			.btn-file {
+				position: relative;
+				overflow: hidden;
 
-// update user avatar
-.avatarButtons {
-	margin-top: 5px;
-}
+				input[type=file] {
+				    position: absolute;
+				    top: 0;
+				    right: 0;
+				    min-width: 100%;
+				    min-height: 100%;
+				    text-align: right;
+				    opacity: 0;
+				    outline: none;
+				    background: white;
+				    cursor: inherit;
+				}
+			}
+		}
+		.addInfor {
+			cursor: pointer;
+			display: none;
+			input {
+				display: inline;
+				width: auto;
+				margin-right: 0.4em;
+			}
+		}
+	}
 
-.badge {
-	a {
-		margin-top: -5px;
+	.firstFooter {
+		position: relative;
+		span {
+			position: absolute;
+			right: 0.9em;
+		}
 	}
 }
 
-// change default file input button style
-.btn-file {
-	position: relative;
-	overflow: hidden;
-
-	input[type=file] {
-	    position: absolute;
-	    top: 0;
-	    right: 0;
-	    min-width: 100%;
-	    min-height: 100%;
-	    text-align: right;
-	    opacity: 0;
-	    outline: none;
-	    background: white;
-	    cursor: inherit;
+// user input problem
+#secondPage {
+	.secondHead {
+		position: relative;
+	}
+	.listProblem {
+		text-align: center;
+	}
+	.secondFooter {
+		width: 95%;
+		background-color: #FFFFFF;
+		position: absolute;
+		bottom: 2em;
+		.pager {
+			.previous {
+				float: left;
+			}
+			.next {
+				float: right;
+			}
+		}
 	}
 }
-.addInfor {
-	cursor: pointer;
-	display: none;
-	input {
-		display: inline;
-		width: auto;
-		margin-right: 0.4em;
-	}
+
+// user question tags
+#thirdPage {
+
 }
 
 //every tab content panel style
@@ -58,16 +102,4 @@
 	.panel-heading {
 		text-align: center;
 	}
-
-	.panel-body {
-		* {
-			text-align: center;
-		}
-		//pagination
-		.pager {
-			height: 20px;
-			margin-top: 15px;
-			font-size: 12px;
-		}
-	}
-}
+ }
