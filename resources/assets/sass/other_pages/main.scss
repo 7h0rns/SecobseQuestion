@@ -172,13 +172,18 @@ $smallMedia-width: 360px;
 .scrollToTop{
   display: none;
   position:fixed;
-  bottom: 4em;
-  right: 4em;
-  padding:.75em;
+  bottom: 5em;
+  right: 5em;
+  -webkit-border-radius:1.3em;
+  -moz-border-radius:1.3em;
+  border-radius:1.3em;
+  padding:10px;
+  width: auto;
+  height: auto;
   text-decoration: none;
-  background-color: $scrollToTop-color;
+  background-color: #a09b9b;
   &:hover {
-    text-decoration: none;
+      text-decoration: none;
   }
 }
 
