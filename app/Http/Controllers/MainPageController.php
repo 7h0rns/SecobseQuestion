@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -22,6 +23,7 @@ class MainPageController extends Controller
 		$mostViewQuestion = Question::orderBy('readtimes', 'desc')->Paginate(15);
 		$readered = Question::where('readtimes', '>', 0)->get()->sortBy('readtimes')->reverse()->slice(0, 5);
 		$updated = Question::all()->sortBy('updated_at')->reverse()->slice(0, 5);
-		return view('main', compact('questions', 'readered', 'loved', 'updated','noAnswerQuestion','mostViewQuestion'));
+		$popularUser = User::all()->sortByDesc('questions_count')->slice(0,5);
+		return view('main', compact('questions', 'readered', 'loved', 'updated','noAnswerQuestion','mostViewQuestion','popularUser'));
     }
 }

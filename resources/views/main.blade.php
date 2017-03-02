@@ -152,28 +152,14 @@
           <p>开始吧!</p>
       </div>
       <div class="list-group recommend">
-          <h4 class="recommend-name">推荐作者</h4>
+          <h4 class="recommend-name">活跃用户</h4>
           <ol>
+              @foreach($popularUser as $hotUser)
               <li>
-                  <img src="/uploads/avatars/default.jpg" />
-                  <a href="#">loner11</a>
+                  <img src="/uploads/avatars/{{ $hotUser->avatar }}" />
+                  <a href="/profile/{{ $hotUser->name }}">{{ $hotUser->name }}</a>
               </li>
-              <li>
-                  <img src="/uploads/avatars/default.jpg" />
-                  <a href="#">loner11</a>
-              </li>
-              <li>
-                  <img src="/uploads/avatars/default.jpg" />
-                  <a href="#">loner11</a>
-              </li>
-              <li>
-                  <img src="/uploads/avatars/default.jpg" />
-                  <a href="#">loner11</a>
-              </li>
-              <li>
-                  <img src="/uploads/avatars/default.jpg" />
-                  <a href="#">loner11</a>
-              </li>
+              @endforeach
           </ol>
       </div>
     </div>

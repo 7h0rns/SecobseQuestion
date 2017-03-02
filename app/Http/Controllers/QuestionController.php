@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -54,6 +55,7 @@ class QuestionController extends Controller
 		$question = Question::create($data);
 
 		$question->tags()->attach($tags);
+        $user = User::find(Auth::user()->id)->increment('questions_count');
 
 		flash('提问成功!', 'success');
 
@@ -68,7 +70,7 @@ class QuestionController extends Controller
 	 */
 	public function show($id)
 	{
-		$question =  Question::with('tags')->findOrFail($id);;
+		$question =  Question::with('tags')->findOrFail($id);
 
 		$question->readtimes += 1;
 
@@ -80,7 +82,8 @@ class QuestionController extends Controller
 
 		$question->content = Markdown::convertToHtml($question->content);
 
-		return view('questions.show', compact('question','userAvatar','answer'));
+		$popularQuestions = $question->orderBy('answertimes','desc')->where('answertimes','>',0)->limit(5)->get();
+		return view('questions.show', compact('question','userAvatar','answer','popularQuestions'));
 	}
 
 	/**

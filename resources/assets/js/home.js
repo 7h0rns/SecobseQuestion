@@ -26,4 +26,14 @@ $(document).ready(function(){
        $(".addInfor").eq(clickIndex[count]).fadeIn("fast");
        //add click item for style
    });
+
+  //  person introduce
+  $(".addIntro").click(function(){
+    $(".introDetaile").eq(0).addClass("introDetailHide");
+    $(".introDetaile").eq(1).removeClass("introDetailHide");
+    $(".cancelBtn").click(function(){
+      $(".introDetaile").eq(0).removeClass("introDetailHide");
+      $(".introDetaile").eq(1).addClass("introDetailHide");
+    });
+  });
 });

@@ -23,3 +23,6 @@ Route::get('/tags', function (Request $request) {
         ->get();
     return $tags;
 })->middleware('api');
+
+Route::post('answer/{id}/votes/users','VoteController@users')->middleware('auth:api');
+Route::post('answer/vote','VoteController@vote')->middleware('auth:api');

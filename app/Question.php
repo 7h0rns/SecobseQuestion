@@ -61,6 +61,10 @@ class Question extends Model
 		return $this->belongsToMany(Tag::class)->withTimestamps();
 	}
 
+	public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     /**
      * Get the answers for the question.
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

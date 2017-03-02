@@ -60,30 +60,40 @@
               <h2>
                 {{ $u->name }} 's Home
               </h2>
-              <p>
-                <span class="displayInfor">
-                  <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;
-                  @if($u->email)
-                  {{$u->email}}&nbsp;
-                  @else
-                  no email&nbsp;
-                  @endif
-                  <span class="addEdit"><i class="fa fa-pencil  editColor">编辑</i></span>
-                </span>
-                <div class="addInfor">
-                  <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <input type="text" class="input-sm tagsInput form-control mr10 fillText" name="email"><button type="button" class="btn btn-sm btn-primary saveBtn" name="save">save</button>
+              <div class="panel-defaul profileIntro">
+                <div class="panel-heading profileIntroHeader">
+                  <div class="circleApple">
+                    <span class="circleRed circle"></span>&nbsp;
+                    <span class="circleOrange circle"></span>&nbsp;
+                    <span class="circleGreen circle"></span>
+                  </div>
+                  <div class="profileEdit"><span class="addIntro"><i class="fa fa-pencil"></i>编辑</span></div>
                 </div>
-              </p>
+
+                <!-- doesn't have introduce item in user table,you need add introduce,otherwise have problem -->
+                <ul class="profileIntroContent">
+                  <li class="introDetaile">
+                    @if($u->introduce)
+                    <p>{{$u->introduce}}</p>
+                    @else
+                    <p>还没有简介<a href="javascript:;" class="addIntro">立即添加</a></p>
+                    @endif
+                  </li>
+                  <li class="introDetaile introDetailHide">
+                    <textarea class="form-control" name="description" rows="4"></textarea>
+                    <button type="button" class="btn btn-primary saveBtn" name="save">save</button>
+                    <button type="button" class="btn btn-default cancelBtn" name="cancel">cancel</button>
+                  </li>
+                </ul>
+              </div>
              </div>
            </div>
            <div class="panel-footer firstFooter">
-             上次登录时间: {{ Auth::user()->updated_at }}
-             <span>
+             <h6>上次登录时间: {{ Auth::user()->updated_at }}</h6>
+             <h5>
                <i class="fa fa-pencil" aria-hidden="true"></i>: 编辑
                <i class="fa fa-trash" aria-hidden="true"></i>: 删除
-             </span>
+             </h5>
            </div>
          </div>
        </div>

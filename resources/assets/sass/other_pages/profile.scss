@@ -1,103 +1,204 @@
-.user-info {
-	img {
-		width: 100px;
-		height:100px;
-		margin: {
-			top: 10px;
-			left: 20px;
-		}
-	}
+$iPad-width:768px;
+$commonMedia-width:414px;
+$iPhone6-width:375px;
+$GalaxyMedia-width:360px;
+$iPhone5-width:320px;
 
-	@media screen and (max-width: 650px) {
-		text-align: center;
-	}
+@mixin iPad-width {
+  @media screen and (max-width: #{$iPad-width})
+  {
+    @content;
+  }
 }
-
-.single-member{
-  width: 280px;
-  float: left;
-  margin: 30px 2.5%;
-  background-color: #fff;
-  text-align: center;
-  position: relative;
-}
-.member-image img{
-  max-width: 100%;
-  vertical-align: middle;
-}
-h3 {
-  font-size: 24px;
-  font-weight: normal;
-  margin: 10px 0 0;
-  text-transform: uppercase;
-}
-h5 {
-  font-size: 16px;
-  font-weight: 300;
-  margin: 0 0 15px;
-  line-height: 22px;
-}
-p {font-size: 14px;
-  font-weight: 300;
-  line-height: 22px;
-  padding: 0 30px;
-  margin-bottom: 10px;
-}
-.social-touch a{
-  display: inline-block;
-  width: 27px;
-  height: 26px;
-  vertical-align: middle;
-  margin: 0 2px;
-  opacity: 0.7;
-  transition: 0.3s;
-}
-.social-touch a:hover{
-  opacity: 1;
-  transition: 0.3s;
+@mixin commonMedia {
+    @media screen and (max-width: #{$commonMedia-width}) {
+        @content;
+    }
 }
 
+@mixin iPhone6width {
+  @media screen and (max-width: #{$iPhone6-width}){
+    @content;
+  }
+}
+
+@mixin GalaxyMedia {
+  @media screen and (max-width: #{$GalaxyMedia-width}){
+    @content;
+  }
+}
+
+@mixin iPhone5Width {
+    @media screen and (max-width: #{$iPhone5-width}) {
+        @content;
+    }
+}
+
+// person information
+.userInfor {
+  z-index: 1;
+  .single-member{
+    width: 30em;
+    @include commonMedia {
+      width: 26em;
+    };
+    @include iPhone6width {
+      width: 24em;
+    };
+    @include GalaxyMedia {
+      width: 23em;
+    };
+    @include iPhone5Width {
+      width: 20em;
+    };
+    float: left;
+    margin: 30px 2.5%;
+    background-color: #fff;
+    text-align: center;
+    position: relative;
+
+  	// pserson image style
+  	.member-image {
+  		img {
+  			max-width: 100%;
+  		  vertical-align: middle;
+  		}
+  		.label-success {
+  			display: table;
+  			margin: 3em auto;
+  		}
+  		.label-danger {
+  			display: table;
+  			margin: 3em auto;
+  		}
+  	}
+
+  	// persion information style
+  	.member-info {
+  		h2 {
+  			font-size: 2em;
+  		  font-weight: normal;
+  		  margin: 0.1em 0 0;
+  		}
+  		h5 {
+  			font-size: 1em;
+  		  font-weight: 300;
+  		  margin: 0 0 0.9em;
+  		  line-height: 2em;
+  		}
+  		p {
+  			font-size: 1em;
+  			font-weight: 300;
+  			line-height: 0.8em;
+  			padding: 0 2.4em;
+  			margin-bottom: 0.8em;
+  		}
+  		.social-touch {
+  			a {
+  				display: inline-block;
+  			  width: 27px;
+  			  height: 26px;
+  			  vertical-align: middle;
+  			  margin: 0 2px;
+  			  opacity: 0.7;
+  			  transition: 0.3s;
+  				&:hover {
+  					opacity: 1;
+  				  transition: 0.3s;
+  				}
+  			}
+  		}
+  	}
+  }
+}
+
+//person information animation style
 .effect-3{
   max-height: 302px;
   min-height: 302px;
   overflow: hidden;
+	h3 {
+		padding-top: 0.5em;
+		line-height: 2.3em;
+	}
+
+	.member-image {
+		border-bottom: 5px solid #5FB960;
+		transition: 0.4s;
+	  height: 212px;
+	  width: 100%;
+	  display: inline-block;
+	  float: none;
+	  vertical-align: middle;
+		.img {
+			width: 100%;
+		  vertical-align: bottom;
+		}
+	}
+
+	.member-info {
+		transition: 0.4s;
+		.social-touch {
+			background-color: #5FB960;
+		  float: left;
+		  left: 0;
+		  bottom: 0;
+		  overflow: hidden;
+		  padding: 5px 0;
+		  width: 100%;
+		  transition: 0.4s;
+			a {
+				color: #d0d0d0;
+			}
+		}
+	}
+	&:hover {
+		.member-image {
+			border-bottom: 0;
+			border-radius: 0 0 50px 50px;
+			height: 81px;
+			display: inline-block;
+			overflow: hidden;
+			width: 109px;
+			transition: 0.4s;
+		}
+	}
 }
-.effect-3 h3{
-  padding-top: 7px;
-  line-height: 33px;
-}
-.effect-3 .member-image{
-  border-bottom: 5px solid #5fb960;
-  transition: 0.4s;
-  height: 212px;
-  width: 100%;
-  display: inline-block;
-  float: none;
-  vertical-align: middle;
-}
-.effect-3 .member-info{
-  transition: 0.4s;
-}
-.effect-3 .member-image img{
-  width: 100%;
-  vertical-align: bottom;
-}
-.effect-3 .social-touch{
-  background-color: #5fb960;
-  float: left;
-  left: 0;
-  bottom: 0;
+
+// person information
+#problemHead {
+  max-height: 25em;
+  min-height: 25em;
   overflow: hidden;
-  padding: 5px 0;
-  width: 100%;
-  transition: 0.4s;
-}
-.effect-3:hover .member-image{
-  border-bottom: 0;
-  border-radius: 0 0 50px 50px;
-  height: 81px;
-  display: inline-block;
-  overflow: hidden;
-  width: 109px;
-  transition: 0.4s;
+  .listHead {
+    position: relative;
+  }
+  .listFooter {
+    width: 94%;
+    @include iPad-width {
+      width: 33%;
+    }
+
+    @include commonMedia {
+      width: 92%;
+    };
+
+    @include iPhone6width {
+      width: 91%;
+    };
+    @include iPhone5Width {
+      width: 90%;
+    };
+		background-color: #FFFFFF;
+		position: absolute;
+		bottom: 2em;
+		.pager {
+			.previous {
+				float: left;
+			}
+			.next {
+				float: right;
+			}
+		}
+  }
 }

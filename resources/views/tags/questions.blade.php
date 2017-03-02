@@ -66,22 +66,12 @@
 			<div class="related-tags">
 				<h4>相关标签</h4>
 				<div class="tags-list">
+					@foreach($popularTags as $hotTag)
 					<div class="tags">
-						<a href="#">JavaScript</a>
-						<span>&nbsp;x&nbsp;1234</span>
+						<a href="{{ url('tag/'.$hotTag->id.'') }}">{{ $hotTag->name }}</a>
+						<span>&nbsp;x&nbsp;{{ $hotTag->questions_count }}</span>
 					</div>
-					<div class="tags">
-						<a href="#">Vue</a>
-						<span>&nbsp;x&nbsp;123</span>
-					</div>
-					<div class="tags">
-						<a href="#">Vue-Router</a>
-						<span>&nbsp;x&nbsp;12</span>
-					</div>
-					<div class="tags">
-						<a href="#">原型与原型链</a>
-						<span>&nbsp;x&nbsp;1</span>
-					</div>
+					@endforeach
 				</div>
 			</div>
 		</div>

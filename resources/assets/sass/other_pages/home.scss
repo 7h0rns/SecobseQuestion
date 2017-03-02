@@ -1,3 +1,7 @@
+$profile_margin_top:1em;
+$profile_edit_background:#fcf8e3;
+$profile_edit_color:#8a6d3b;
+
 //nav tab
 .navTab {
 	height: 20em;
@@ -45,22 +49,112 @@
 				}
 			}
 		}
-		.addInfor {
-			cursor: pointer;
-			display: none;
-			input {
-				display: inline;
-				width: auto;
-				margin-right: 0.4em;
-			}
-		}
-	}
+
+    // person introduce style
+    .profileIntro {
+      margin-top: $profile_margin_top;
+      border: none;
+        .profileIntroHeader {
+        background-color: #E3E3E3;
+        border: none;
+        margin-bottom: 0px;
+        line-height: 1em;
+          &:after {
+          display: block;
+          content: '';
+          clear: both;
+        }
+          .circleApple {
+          float: left;
+            .circle {
+              width: 1em;
+              height: 1em;
+              margin-right: 0.4em;
+              border-radius: 50%;
+              float: left;
+            }
+            .circleRed {
+              background-color: #FF5F57;
+            }
+            .circleOrange {
+              background-color: #FFBD2E;
+            }
+            .circleGreen {
+              background-color: #28CA42;
+            }
+          }
+          .profileEdit {
+          float: right;
+          cursor: pointer;
+          a {
+            color: #636b6f;
+              &:hover {
+                text-decoration: none;
+                background: $profile_edit_background;
+                color: $profile_edit_color;
+                padding: 0.2em;
+              }
+              i {
+                  margin-left:0.2em 0.2em;
+                }
+              }
+            }
+          }
+          .profileIntroContent {
+            background-color: #EEEEEE;
+            .introDetailHide {
+              display: none;
+              textarea.form-control {
+                width: 100%;
+                height: 35px;
+                padding: 6px 12px;
+                background-color: #fff;
+                background-image: none;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+              }
+            }
+            li {
+              list-style: none;
+              background-color: #eee;
+              width: 100%;
+              font-size: 13px;
+              color: #666;
+              overflow: auto;
+              height: 170px;
+              padding: 20px;
+              a {
+                color: #009a61;
+              }
+              &:after {
+                display: block;
+                content: '';
+                clear: both;
+              }
+              button {
+                margin-top: $profile_margin_top;
+                margin-left: 0.4em;
+                float: right;
+              }
+            }
+          }
+        }
+	    }
 
 	.firstFooter {
 		position: relative;
-		span {
+    h6 {
+      font-size: 0.9em;
+      display: inline-block;
+    }
+		h5 {
 			position: absolute;
 			right: 0.9em;
+      font-size: 0.9em;
+      display: inline-block;
 		}
 	}
 }
@@ -89,17 +183,28 @@
 	}
 }
 
-// user question tags
-#thirdPage {
-
-}
-
 //every tab content panel style
 .panel {
-	min-height: 380px;
-	margin-left: 5px;
-	margin-right: 5px;
-	.panel-heading {
-		text-align: center;
-	}
- }
+  min-height: 380px;
+  margin-left: 5px;
+  margin-right: 5px;
+  .panel-heading {
+  	text-align: center;
+  }
+}
+// common text input style
+textarea.form-control {
+    height: auto;
+    margin: 0 -1.2em;
+}
+
+.form-control, output {
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+}
+textarea {
+    resize: vertical;
+    margin: 0 -1em;
+}

@@ -15,20 +15,10 @@ class CreateVotesTable extends Migration
 	{
 		Schema::create('votes', function (Blueprint $table) {
 
-			$table->engine = 'InnoDB';
-
-			$table->string('user');
-			$table->integer('questionId')->unsigned();
-
-			$table->foreign('user')
-				->references('name')
-				->on('users')
-				->onDelete('cascade');
-
-			$table->foreign('questionId')
-				->references('id')
-				->on('questions')
-				->onDelete('cascade');
+            $table->increments('id');
+            $table->unsignedInteger('user_id')->index();
+            $table->unsignedInteger('answer_id')->index();
+            $table->timestamps();
 
 		});
 	}
