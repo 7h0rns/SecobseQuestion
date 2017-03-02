@@ -22,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','confirmation_token'
+        'name', 'email', 'password','confirmation_token','api_token'
     ];
 
      /**
@@ -74,6 +74,26 @@ class User extends Authenticatable
     public function answers()
     {
         return $this->hasMany('App\Answer');
+    }
+
+    public function votes()
+    {
+        return $this->belongsToMany(Answer::class,'votes')->withTimestamps();
+    }
+
+    public function voteFor($answer)
+    {
+        return $this->votes()->toggle($answer);
+    }
+
+    /**
+     * return answer_id Boolean(!!)
+     * @param $answer
+     * @return bool
+     */
+    public function hasVotedFor($answer)
+    {
+        return !! $this->votes()->where('answer_id',$answer)->count();
     }
 }
 

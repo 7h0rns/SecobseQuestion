@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -49,7 +50,7 @@ class AnswerController extends Controller
                 'question_id' => $question_id,
                 'user_id' => $user->id
             ]);
-
+            $user = User::find(Auth::user()->id)->increment('answers_count');
             $answer->question()->increment('answertimes');
             flash('回答成功', 'success');
         }

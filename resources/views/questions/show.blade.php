@@ -93,56 +93,18 @@
                         <p>回答&nbsp;&nbsp;&nbsp;<span>{{ $question->answertimes }}</span></p>
                     </div>
                     <div class="related">
-                        <h4>相关问题</h4>
+                        <h4>热门问题</h4>
                         <div class="related-list">
+                            @foreach($popularQuestions as $hotQuestion)
                             <div class="list-content">
                                 <div class="answer-times">
-                                    <span>10</span>
+                                    <span>{{ $hotQuestion->answertimes }}</span>
                                 </div>
-                                <a href="#">
-                                    <span>You can try to make a meaningful question</span>
+                                <a href="{{ url('questions', $hotQuestion->id) }}">
+                                    <span>{{ $hotQuestion->title }}</span>
                                 </a>
                             </div>
-                            <div class="list-content">
-                                <div class="answer-times">
-                                    <span>10</span>
-                                </div>
-                                <a href="#">
-                                    <span>You can try to make a meaningful question</span>
-                                </a>
-                            </div>
-                            <div class="list-content">
-                                <div class="answer-times">
-                                    <span>10</span>
-                                </div>
-                                <a href="#">
-                                    <span>You can try to make a meaningful question</span>
-                                </a>
-                            </div>
-                            <div class="list-content">
-                                <div class="answer-times">
-                                    <span>10</span>
-                                </div>
-                                <a href="#">
-                                    <span>You can try to make a meaningful question</span>
-                                </a>
-                            </div>
-                            <div class="list-content">
-                                <div class="answer-times">
-                                    <span>10</span>
-                                </div>
-                                <a href="#">
-                                    <span>You can try to make a meaningful question</span>
-                                </a>
-                            </div>
-                            <div class="list-content">
-                                <div class="answer-times">
-                                    <span>10</span>
-                                </div>
-                                <a href="#">
-                                    <span>You can try to make a meaningful question</span>
-                                </a>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

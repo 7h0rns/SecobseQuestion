@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Http\Requests;
@@ -41,6 +42,7 @@ class CommentController extends Controller
             'username' => $user->name,
             'user_id' => $user->id,
         ]);
+        $user = User::find(Auth::user()->id)->increment('comments_count');
 
         flash('评论成功','success');
 

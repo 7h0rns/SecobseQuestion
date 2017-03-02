@@ -3,11 +3,12 @@
   <div class="row question-answers">
       <div class="col-md-1 col-sm-1">
           <div class="answer-votes">
-              <a href="#" class="vote-top" data-toggle="tooltip" data-placement="top" title="答案对人有帮助，有参考价值"><i
-                          class="fa fa-caret-up fa-2x" aria-hidden="true"></i></a>
-              <span class="vote-times">10</span>
-              <a href="#" class="vote-bottom" data-toggle="tooltip" data-placement="bottom"
-                 title="答案没帮助，是错误的答案，答非所问"><i class="fa fa-caret-down fa-2x" aria-hidden="true"></i></a>
+              {{--<a href="#" class="vote-top" data-toggle="tooltip" data-placement="top" title="答案对人有帮助，有参考价值"><i--}}
+                          {{--class="fa fa-caret-up fa-2x" aria-hidden="true"></i></a>--}}
+              {{--<span class="vote-times">10</span>--}}
+              {{--<a href="#" class="vote-bottom" data-toggle="tooltip" data-placement="bottom"--}}
+                 {{--title="答案没帮助，是错误的答案，答非所问"><i class="fa fa-caret-down fa-2x" aria-hidden="true"></i></a>--}}
+                 <user-vote-button answer="{{ $as->id }}" count="{{ $as->votes_count }}"></user-vote-button>
           </div>
       </div>
       <div class="col-md-8 col-sm-8">

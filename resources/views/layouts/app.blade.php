@@ -23,7 +23,8 @@
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
-        ]); ?>
+        ]); ?>;
+        Laravel.apiToken = "{{ Auth::check() ? 'Bearer '.Auth::user()->api_token : 'Bearer ' }}";
     </script>
 </head>
 <body>
@@ -262,9 +263,9 @@
         </div>
     </div>
 
-
+    <div id="app">
     @yield('content')
-
+    </div>
     <!-- Scripts -->
     <script src="/js/app.js"></script>
     <script>
