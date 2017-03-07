@@ -26,13 +26,17 @@
             <h5><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;{{$u->email}}</h5>
             <p>上次登录时间: {{ $u->updated_at }}</p>
             <div class="social-touch">
-              <a class="fb-touch" href="#"><i class="fa fa-2x fa-github" aria-hidden="true"></i><a href="https://github.com/happylwp"></a></a>
+                @if($u->introduce)
+                    <p>{{$u->introduce}}</p>
+                @else
+                    该用户太懒什么也没留下
+                @endif
             </div>
           </div>
         </div>
       </div>
 			<div class="col-md-6">
-        <div class="panel panel-success" id="problemHead">
+        <div class="panel panel-default" id="problemHead">
 
           <div class="panel-heading listHead">我的问题</div>
 
@@ -51,12 +55,9 @@
               @endforeach
           </div>
 
-          <div class="panel-footer listFooter">
-            <ul class="pager">
-              <li class="previous"><a href="{{ $questions->previousPageUrl() }}">上一页</a></li>
-              <li class="next"><a href="{{ $questions->nextPageUrl() }}">下一页</a></li>
-            </ul>
-          </div>
+            <nav class="page">
+                {{$questions->render()}}
+            </nav>
         </div>
 
         @endforeach

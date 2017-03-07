@@ -19,15 +19,15 @@
                 <div class="question-mainbar">
                     <div class="row">
                         <div class="col-md-1 col-sm-1">
-                            <div class="question-vote">
-                                <a href="#" class="vote-top" data-toggle="tooltip" data-placement="top"
-                                   title="问题对人有帮助，内容完整，我也想知道答案"><i
-                                            class="fa fa-caret-up fa-2x" aria-hidden="true"></i></a>
-                                <span class="vote-times">1</span>
-                                <a href="#" class="vote-bottom" data-toggle="tooltip" data-placement="bottom"
-                                   title="问题没有实际价值，缺少关键内容，没有改进余地"><i
-                                            class="fa fa-caret-down fa-2x" aria-hidden="true"></i></a>
-                            </div>
+                            {{--<div class="question-vote">--}}
+                                {{--<a href="#" class="vote-top" data-toggle="tooltip" data-placement="top"--}}
+                                   {{--title="问题对人有帮助，内容完整，我也想知道答案"><i--}}
+                                            {{--class="fa fa-caret-up fa-2x" aria-hidden="true"></i></a>--}}
+                                {{--<span class="vote-times">1</span>--}}
+                                {{--<a href="#" class="vote-bottom" data-toggle="tooltip" data-placement="bottom"--}}
+                                   {{--title="问题没有实际价值，缺少关键内容，没有改进余地"><i--}}
+                                            {{--class="fa fa-caret-down fa-2x" aria-hidden="true"></i></a>--}}
+                            {{--</div>--}}
                         </div>
                         <div class="col-md-8 col-sm-8">
                             <div class="question-content">
@@ -51,8 +51,7 @@
 
                                 <div class="user-info">
                                     <span class="asked-time">{{ $question->created_at }}提问</span>
-                                    <img src="/uploads/avatars/{{ $userAvatar }}" alt="{{ $userAvatar }}" width="32"
-                                         height="32"/>
+                                    <img src="/uploads/avatars/{{ $userAvatar }}" alt="{{ $userAvatar }}"  style="border-radius: 50% ;width:32px;height: 32px"/>
                                     <a href="/profile/{{ $question->username }}">{{ $question->username }}</a>
                                 </div>
                             </div>
@@ -89,7 +88,7 @@
                 <div class="question-sidebar">
                     <div class="question-state">
                         <p>提问&nbsp;&nbsp;&nbsp;<span>{{ $question->created_at }}</span></p>
-                        <p>得票&nbsp;&nbsp;&nbsp;<span>{{ $question->readtimes }}</span></p>
+                        <p>浏览&nbsp;&nbsp;&nbsp;<span>{{ $question->readtimes }}</span></p>
                         <p>回答&nbsp;&nbsp;&nbsp;<span>{{ $question->answertimes }}</span></p>
                     </div>
                     <div class="related">

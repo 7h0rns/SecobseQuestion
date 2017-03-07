@@ -108,7 +108,7 @@
                     @foreach($mostViewQuestion as $question)
                         <div class="singleQuestion">
                             <div class="count-wide">
-                                <div><p>-1</p><p>得票</p></div>
+                                <div><p>{{ $question->votetimes }}</p><p>得票</p></div>
                                 <div><p>{{ $question->answertimes }}</p><p>回答</p></div>
                                 <div><p>{{ $question->readtimes }}</p><p>浏览</p></div>
                             </div>

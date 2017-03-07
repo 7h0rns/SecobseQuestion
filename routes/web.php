@@ -18,7 +18,7 @@ Auth::routes();
 Route::get('email/verify/{token}',['as' => 'email.verify', 'uses' => 'EmailController@verify']);
 
 Route::resource('home', 'HomeController', ['only' => [
-	'index'
+	'index','store'
 ]]);
 
 Route::resource('', 'MainPageController', ['only' => [

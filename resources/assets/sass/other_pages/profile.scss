@@ -114,8 +114,8 @@ $iPhone5-width:320px;
 
 //person information animation style
 .effect-3{
-  max-height: 302px;
-  min-height: 302px;
+  max-height: 29em;
+  min-height: 29em;
   overflow: hidden;
 	h3 {
 		padding-top: 0.5em;
@@ -123,7 +123,7 @@ $iPhone5-width:320px;
 	}
 
 	.member-image {
-		border-bottom: 5px solid #5FB960;
+		border-bottom: 5px solid #eee;
 		transition: 0.4s;
 	  height: 212px;
 	  width: 100%;
@@ -139,7 +139,7 @@ $iPhone5-width:320px;
 	.member-info {
 		transition: 0.4s;
 		.social-touch {
-			background-color: #5FB960;
+			background-color: #eee;
 		  float: left;
 		  left: 0;
 		  bottom: 0;
@@ -147,9 +147,6 @@ $iPhone5-width:320px;
 		  padding: 5px 0;
 		  width: 100%;
 		  transition: 0.4s;
-			a {
-				color: #d0d0d0;
-			}
 		}
 	}
 	&:hover {
@@ -167,38 +164,24 @@ $iPhone5-width:320px;
 
 // person information
 #problemHead {
-  max-height: 25em;
-  min-height: 25em;
+  max-height: 28.5em;
+  min-height: 28.5em;
   overflow: hidden;
   .listHead {
     position: relative;
-  }
-  .listFooter {
-    width: 94%;
-    @include iPad-width {
-      width: 33%;
-    }
-
-    @include commonMedia {
-      width: 92%;
-    };
-
-    @include iPhone6width {
-      width: 91%;
-    };
-    @include iPhone5Width {
-      width: 90%;
-    };
-		background-color: #FFFFFF;
-		position: absolute;
-		bottom: 2em;
-		.pager {
-			.previous {
-				float: left;
-			}
-			.next {
-				float: right;
+  } 
+	.list-group-item-heading {
+		font-size: 1em;
+	}
+	nav {
+		text-align: center;
+		.pagination {
+			.active {
+				span {
+					background-color: #2ab27b;
+					border-color: #2ab27b;
+				}
 			}
 		}
-  }
+	}
 }

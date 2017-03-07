@@ -76,11 +76,11 @@
                     @if($u->introduce)
                     <p>{{$u->introduce}}</p>
                     @else
-                    <p>还没有简介<a href="javascript:;" class="addIntro">立即添加</a></p>
+                    <p id="showIntro">还没有简介<a href="javascript:;" class="addIntro">立即添加</a></p>
                     @endif
                   </li>
                   <li class="introDetaile introDetailHide">
-                    <textarea class="form-control" name="description" rows="4"></textarea>
+                    <textarea class="form-control" name="introduce" id="userIntro" rows="4"></textarea>
                     <button type="button" class="btn btn-primary saveBtn" name="save">save</button>
                     <button type="button" class="btn btn-default cancelBtn" name="cancel">cancel</button>
                   </li>
@@ -101,7 +101,10 @@
          <div class="panel panel-default">
              <div class="panel-heading secondHead">
                  我的问题
-                 <span><a href="/questions/create"><button class="btn btn-sm btn-success">提问</button></a></span>
+                 <div style="float: right">
+                 <i class="fa fa-pencil" aria-hidden="true"></i>: 编辑
+                 <i class="fa fa-trash" aria-hidden="true"></i>: 删除
+                 </div>
              </div>
 
              <!-- List group -->
@@ -121,10 +124,9 @@
             </ul>
 
           <div class="panel-footer secondFooter">
-            <ul class="pager">
-              <li class="previous"><a href="{{ $userQuestions->previousPageUrl() }}">上一页</a></li>
-              <li class="next"><a href="{{ $userQuestions->nextPageUrl() }}">下一页</a></li>
-            </ul>
+              <nav class="page" style="text-align: center">
+                  {{$userQuestions->render()}}
+              </nav>
           </div>
          </div>
        </div>
@@ -147,6 +149,7 @@
      </div>
    </div>
 </div>
+<div id="debug"></div>
 @endsection
 
 @section('js')

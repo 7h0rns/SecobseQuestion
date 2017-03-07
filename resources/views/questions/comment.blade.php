@@ -2,7 +2,7 @@
 <div class="question-answers-mainbar">
   <div class="row question-answers">
       <div class="col-md-1 col-sm-1">
-          <div class="answer-votes">
+          <div class="answer-votes" style="margin-top: 11px">
               {{--<a href="#" class="vote-top" data-toggle="tooltip" data-placement="top" title="答案对人有帮助，有参考价值"><i--}}
                           {{--class="fa fa-caret-up fa-2x" aria-hidden="true"></i></a>--}}
               {{--<span class="vote-times">10</span>--}}
@@ -16,7 +16,7 @@
             <article id="answer_content">@MarkDown($as->html_content)</article>
             <div class="answer-user-info">
                 <span class="answered-time">{{ $as->created_at }}回答</span>
-                <img src="/uploads/avatars/{{ $as->avatar}}" alt="{{ $as->avatar}}" width="32" height="32"/>
+                <img src="/uploads/avatars/{{ $as->avatar}}" alt="{{ $as->avatar}}"  style="border-radius: 50% ;width:32px;height: 32px"/>
                 <a href="/profile/{{ $as->answer_name }}">{{$as->answer_name}}</a>
             </div>
         </div>

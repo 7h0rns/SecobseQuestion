@@ -36,4 +36,40 @@ $(document).ready(function(){
       $(".introDetaile").eq(1).addClass("introDetailHide");
     });
   });
+
+  $(".saveBtn").click(function () {
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+      var data = {
+          introduce: $('#userIntro').val()
+      };
+      console.log(data);
+      $.ajax({
+          type: "POST",
+          url: '/home',
+          data: data,
+          dataType: 'json',
+          success: function (data) {
+              console.log(data);
+              var intro = '<p id="showIntro" >'+(data.introduce)+'</p>';
+              $(".introDetaile").eq(0).removeClass("introDetailHide");
+              $(".introDetaile").eq(1).addClass("introDetailHide");
+              $('.introDetaile').html(intro);
+              console.log(intro);
+          },
+          error: function (data, json, errorThrown) {
+              console.log(data);
+              $('#debug').html(data.responseText);
+              var errors = data.responseJSON;
+              var errorsHtml = '';
+              $.each(errors, function (key, value) {
+                  errorsHtml += '<li>' + value[0] + '</li>';
+              });
+          }
+      });
+  });
 });

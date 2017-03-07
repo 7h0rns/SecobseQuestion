@@ -33,8 +33,19 @@ class HomeController extends Controller
 			->where('name',  Auth::user()->name)
 			->get();
 		$tags = Question::UserTags()->distinct()->get();
-    $tagsCount = $tags->count();
+        $tagsCount = $tags->count();
         $questionCount = DB::table('questions')->where('username', Auth::user()->name)->count();
         return view('home', compact('userQuestions','tags','user', 'questionCount','tagsCount'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'introduce' => 'required',
+        ]);
+        $user = User::find(Auth::user()->id);
+        $user->introduce = $request->get('introduce');
+        $user->save();
+        return $user;
     }
 }
