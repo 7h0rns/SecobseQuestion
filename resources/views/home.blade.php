@@ -28,6 +28,12 @@
               <span class="badge">{{$tagsCount}}</span>
             </a>
           </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#fourPage" data-toggle="tab" role="tab">
+                    <span class="leftarea">我的文章</span>
+                    <span class="badge">{{$postCount}}</span>
+                </a>
+            </li>
         </ul>
      </div>
      <div class="tab-content">
@@ -146,6 +152,37 @@
              </div>
          </div>
        </div>
+         <div class="col-md-10 tab-pane" id="fourPage" role="tabpanel">
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                     我的文章
+                     <div style="float: right">
+                         <i class="fa fa-pencil" aria-hidden="true"></i>: 编辑
+                         <i class="fa fa-trash" aria-hidden="true"></i>: 删除
+                     </div>
+                 </div>
+                 <ul class="list-group">
+                     @foreach($userPosts as $userQuestion)
+                         <li class="list-group-item listProblem">
+                  <span class="badge" style="background-color: white;">
+                      <a href="#" class="pull-right deletePost"
+                         data-id="{{ $userQuestion->id }}">
+                          <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                      </a>
+                      <a href="/posts/{{ $userQuestion->id }}/edit" class="pull-right"><i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a>
+                  </span>
+                             <a href="/posts/{{ $userQuestion->id }}">{{ $userQuestion->title }}</a>
+                         </li>
+                     @endforeach
+                 </ul>
+
+                 <div class="panel-footer secondFooter">
+                     <nav class="page" style="text-align: center">
+                         {{$userPosts->render()}}
+                     </nav>
+                 </div>
+             </div>
+         </div>
      </div>
    </div>
 </div>
@@ -170,6 +207,21 @@
             type: "DELETE",
           }).done(function() {
             self.closest("li").remove();
+          });
+      });
+      $(".deletePost").click(function() {
+          var id = $(this).data("id");
+          var self = $(this);
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+          $.ajax({
+              url: "/posts/" + id,
+              type: "DELETE",
+          }).done(function() {
+              self.closest("li").remove();
           });
       });
     });

@@ -26,11 +26,15 @@ Route::resource('', 'MainPageController', ['only' => [
 ]]);
 
 Route::resource('questions', 'QuestionController');
+Route::resource('posts', 'PostController', ['names' =>[
+    'create' => 'post.create',
+    'show' => 'post.show',
+]]);
 Route::resource('tag','TagController');
 Route::resource('answer','AnswerController', ['only' => ['store']]);
 Route::resource('comment','CommentController',['only' => ['store']]);
 
-Route::get('profile/{username}', 'User\UserController@profile');
+Route::get('profile/{username}', 'User\UserController@profile')->name('profile.name');
 Route::post('profile', 'User\UserController@updateAvatar')->middleware('auth');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function()

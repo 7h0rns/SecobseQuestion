@@ -62,6 +62,14 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function posts()
+    {
+        return $this->hasMany(Post::class,"username", "name");
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function tags()
 	{
 		return $this->hasMany('App\Tag');

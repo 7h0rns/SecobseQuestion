@@ -51,6 +51,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav nav-title">
                     <li><a href="{{ url('') }}">问答</a></li>
+                    <li><a href="{{ url('/posts') }}">文章</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -85,6 +86,12 @@
                         </li>
                     @endif
                 </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </form>
             </div>
         </div>
     </nav>
