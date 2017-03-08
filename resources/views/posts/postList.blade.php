@@ -9,10 +9,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">文章列表</div>
                     <div class="panel-body">
+                        <ul class="list-group">
                         @foreach($posts as $post)
+                            <li class="list-group-item">
                             <a href="{{ route('post.show',[$post->id]) }}">{{ $post->title }}</a>
                             <i class="fa fa-user"></i><a href="{{ route('profile.name',[$post->username]) }}">{{ $post->username }}</a>发布于{{ $post->created_at }}
+                            </li>
                         @endforeach
+                        </ul>
                     </div>
                     <div id="debug"></div>
                 </div>

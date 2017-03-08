@@ -45,7 +45,26 @@ class CommentController extends Controller
         $user = User::find(Auth::user()->id)->increment('comments_count');
 
         flash('评论成功','success');
-
-        return redirect('/questions/' . $id);
+        if ($comment->commentable_type == 'App\Post')
+        {
+            return redirect('posts/' . $id);
+        }
+        return   redirect('/questions/' . $id);
     }
+//    public function postComment(Request $request)
+//    {
+//        $this->validate($request, [
+//            'content' => 'required',
+//        ]);
+//        $comment = Comment::find(Auth::user()->id);
+//        $comment->content = $request->get('content');
+//        $comment->html_content = Markdown::convertToHtml($request->get('content'));
+//        $comment->commentable_id = $request->get('commentable_id');
+//        $comment->commentable_type = $request->get('commentable_type');
+//        $comment->username = Auth::user()->name;
+//        $comment->user_id = Auth::id();
+//        $comment->save();
+//        return $comment;
+//    }
+
 }

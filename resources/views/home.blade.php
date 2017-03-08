@@ -163,7 +163,7 @@
                  </div>
                  <ul class="list-group">
                      @foreach($userPosts as $userQuestion)
-                         <li class="list-group-item listProblem">
+                         <li class="list-group-item listPost">
                   <span class="badge" style="background-color: white;">
                       <a href="#" class="pull-right deletePost"
                          data-id="{{ $userQuestion->id }}">
@@ -221,7 +221,7 @@
               url: "/posts/" + id,
               type: "DELETE",
           }).done(function() {
-              self.closest("li").remove();
+              self.closest(".listPost").remove();
           });
       });
     });
