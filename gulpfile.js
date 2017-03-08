@@ -21,6 +21,7 @@ elixir(mix => {
         .sass('other_pages/profile.scss', 'public/css/other')
         .sass('other_pages/show.scss', 'public/css/other')
         .sass('other_pages/questions.scss', 'public/css/other')
+        .sass('other_pages/posts.scss', 'public/css/other')
         .copy('node_modules/font-awesome/fonts', 'public/fonts')
         .copy('node_modules/simplemde/dist/simplemde.min.css', 'public/css/simplemde.min.css')
         .copy('node_modules/simplemde/dist/simplemde.min.js', 'public/js/simplemde.min.js')

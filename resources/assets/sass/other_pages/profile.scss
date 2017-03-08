@@ -37,6 +37,7 @@ $iPhone5-width:320px;
 // person information
 .userInfor {
   z-index: 1;
+  overflow: hidden;
   .single-member{
     width: 30em;
     @include commonMedia {
@@ -164,12 +165,13 @@ $iPhone5-width:320px;
 
 // person information
 #problemHead {
-  max-height: 28.5em;
-  min-height: 28.5em;
+  margin-top: 1em;
+  max-height: 22em;
+  min-height: 22em;
   overflow: hidden;
   .listHead {
     position: relative;
-  } 
+  }
 	.list-group-item-heading {
 		font-size: 1em;
 	}

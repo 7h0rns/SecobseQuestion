@@ -154,7 +154,7 @@
        </div>
          <div class="col-md-10 tab-pane" id="fourPage" role="tabpanel">
              <div class="panel panel-default">
-                 <div class="panel-heading">
+                 <div class="panel-heading fourHead">
                      我的文章
                      <div style="float: right">
                          <i class="fa fa-pencil" aria-hidden="true"></i>: 编辑
@@ -176,7 +176,7 @@
                      @endforeach
                  </ul>
 
-                 <div class="panel-footer secondFooter">
+                 <div class="panel-footer fourFooter">
                      <nav class="page" style="text-align: center">
                          {{$userPosts->render()}}
                      </nav>

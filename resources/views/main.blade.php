@@ -46,7 +46,7 @@
                               <a href="/profile/{{ $question->username }}">
                                   <span>{{ $question->username }}</span>
                               </a>
-                              <span>{{ $question->created_at }}提问</span>
+                              <span class="spanColor">{{ $question->created_at }}提问</span>
                             </div>
                         </div>
                       </div>
@@ -88,7 +88,7 @@
                                         <a href="/profile/{{ $question->username }}">
                                             <span>{{ $question->username }}</span>
                                         </a>
-                                        <span>{{ $question->created_at }}提问</span>
+                                        <span class="spanColor">{{ $question->created_at }}提问</span>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                         <a href="/profile/{{ $question->username }}">
                                             <span>{{ $question->username }}</span>
                                         </a>
-                                        <span>{{ $question->created_at }}提问</span>
+                                        <span class="spanColor">{{ $question->created_at }}提问</span>
                                     </div>
                                 </div>
                             </div>

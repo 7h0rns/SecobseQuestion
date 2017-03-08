@@ -183,6 +183,29 @@ $profile_edit_color:#8a6d3b;
 	}
 }
 
+#fourPage {
+	.fourHead {
+		position: relative;
+	}
+	.listPost {
+		text-align: center;
+	}
+	.fourFooter {
+		width: 95%;
+		background-color: #FFFFFF;
+		position: absolute;
+		bottom: 2em;
+		.pager {
+			.previous {
+				float: left;
+			}
+			.next {
+				float: right;
+			}
+		}
+	}
+}
+
 //every tab content panel style
 .panel {
   min-height: 380px;
