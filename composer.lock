@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f74817cb8ff809f0cd89c611a5bebb1",
+    "content-hash": "253632286b84241a64bd68f8fa343ecf",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1661,6 +1661,52 @@
             "time": "2017-01-16T07:55:07+00:00"
         },
         {
+            "name": "nicolaslopezj/searchable",
+            "version": "1.9.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicolaslopezj/searchable.git",
+                "reference": "1351b1b21ae9be9e0f49f375f56488df839723d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/nicolaslopezj/searchable/1351b1b21ae9be9e0f49f375f56488df839723d4.zip",
+                "reference": "1351b1b21ae9be9e0f49f375f56488df839723d4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "illuminate/database": "4.2.x|~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nicolaslopezj\\Searchable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Lopez",
+                    "email": "nicolaslopezj@me.com"
+                }
+            ],
+            "description": "Eloquent model search trait.",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "model",
+                "search",
+                "searchable"
+            ],
+            "time": "2016-12-16T21:23:34+00:00"
+        },
+        {
             "name": "nikic/php-parser",
             "version": "v3.0.5",
             "source": {
@@ -2934,6 +2980,53 @@
                 "dump"
             ],
             "time": "2017-01-24T13:02:38+00:00"
+        },
+        {
+            "name": "tom-lingham/searchy",
+            "version": "2.0.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TomLingham/Laravel-Searchy.git",
+                "reference": "740600c76b0da1231f2e9d4c16ed0e9ce8d2481d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/TomLingham/Laravel-Searchy/740600c76b0da1231f2e9d4c16ed0e9ce8d2481d.zip",
+                "reference": "740600c76b0da1231f2e9d4c16ed0e9ce8d2481d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.1.* || 5.2.* || 5.3.*",
+                "php": "^5.5.9 || ^7.0"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^3.1",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.8 || ^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TomLingham\\Searchy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Lingham",
+                    "email": "tjlingham@gmail.com"
+                }
+            ],
+            "description": "Laravel Searchy makes user driven searching easy with fuzzy search, basic string matching, Levenshtein Distance and more.",
+            "keywords": [
+                "fuzzy",
+                "laravel",
+                "search"
+            ],
+            "time": "2017-01-30T23:15:08+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

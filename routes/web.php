@@ -26,6 +26,7 @@ Route::resource('', 'MainPageController', ['only' => [
 ]]);
 
 Route::resource('questions', 'QuestionController');
+Route::get('/search', 'QuestionController@search')->name('search');
 Route::resource('posts', 'PostController', ['names' =>[
     'create' => 'post.create',
     'show' => 'post.show',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 use App\Comment;
@@ -47,6 +48,7 @@ class CommentController extends Controller
         flash('评论成功','success');
         if ($comment->commentable_type == 'App\Post')
         {
+            $post = Post::find($id)->increment('comments_count');
             return redirect('posts/' . $id);
         }
         return   redirect('/questions/' . $id);

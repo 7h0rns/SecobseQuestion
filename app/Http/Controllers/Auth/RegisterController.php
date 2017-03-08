@@ -67,6 +67,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'introduce' => '该用户很懒，什么都没有写哦。',
             'confirmation_token' => str_random(40),
             'password' => bcrypt($data['password']),
             'api_token' =>str_random(60)

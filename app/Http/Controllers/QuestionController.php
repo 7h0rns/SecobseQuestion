@@ -159,5 +159,14 @@ class QuestionController extends Controller
         })->toArray();
     }
 
+    public function search(Request $request)
+    {
+        $q = $request->get('q');
 
+        $questions = Question::search($q, null, true)->paginate(15);
+
+        $count = $questions->count('id');
+
+        return view('questions.search', compact('questions', 'q','count'));
+    }
 }

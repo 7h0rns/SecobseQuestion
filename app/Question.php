@@ -6,14 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
 use Auth;
+use Nicolaslopezj\Searchable\SearchableTrait;
 use Illuminate\Support\Facades\DB;
 
 class Question extends Model
 {
+    use SearchableTrait;
+
 	protected $table = 'questions';
 
 	protected $fillable = ['title', 'content', 'username'];
 
+    protected $searchable = [
+        'columns' => [
+            'questions.title' => 10,
+            'questions.content' => 5,
+        ],
+          'joins' => [
+
+        ],
+    ];
 	/**
 	 * Scope a query find user questions.
 	 *
