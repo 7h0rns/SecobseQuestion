@@ -61,6 +61,25 @@
                         <li><a data-toggle="modal" data-target="#login">登 录</a></li>
                         <li><a data-toggle="modal" data-target="#register">注 册</a></li>
                     @else
+                        <li>
+                            <a href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                <i class="fa fa-plus text-md"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                <li>
+                                    <a class="button no-pjax" href="{{ route('questions.create') }}">
+                                        <i class="fa fa-comment text-md"></i> 进行提问
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="button no-pjax" href="{{ route('post.create') }}" >
+                                        <i class="fa fa-paint-brush text-md"></i> 创作文章
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->avatar }}" style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;" />
