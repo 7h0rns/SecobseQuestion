@@ -44,7 +44,7 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="mostviewed">
-                    @foreach($posts as $post)
+                    @foreach($hotPosts as $post)
                     <div class="singlePosts">
                         <div class="count-wide">
                             <div><p>{{$post->comments->count('id')}}</p><p>评论</p></div>

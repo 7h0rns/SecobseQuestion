@@ -1,6 +1,6 @@
 <template>
     <button
-            class="btn btn-default"
+            class="btn btn-default fa fa-thumbs-o-up fa-lg"
             v-bind:class="{'btn-primary': voted}"
             v-text="text"
             v-on:click="vote"

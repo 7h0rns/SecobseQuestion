@@ -27,7 +27,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest('created_at')->Paginate(10);
-        return view('posts.postList', compact('posts'));
+        $hotPosts = Post::orderBy('read_count', 'desc')->Paginate(10);
+        return view('posts.postList', compact('posts','hotPosts'));
     }
 
     /**
@@ -75,8 +76,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-//        $post->content = Markdown::convertToHtml($post->content);
-
+        $post->increment('read_count');
         return view('posts.show', compact('post'));
     }
 

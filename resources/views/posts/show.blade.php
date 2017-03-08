@@ -16,8 +16,9 @@
                     <span class="posts-info">
                         <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;
                         <a href="{{ route('profile.name',[$post->username]) }}">{{ $post->username }}</a>
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;
-                        {{ $post->created_at }}
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; {{ $post->created_at }}
+                        <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;{{ $post->read_count }}
+                        <i class="fa fa-comments" aria-hidden="true"></i>&nbsp;{{ $post->comments_count }}
                     </span>
                 </div>
                 <div class="panel-body posts-body">

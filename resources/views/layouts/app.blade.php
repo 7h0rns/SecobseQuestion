@@ -88,7 +88,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/profile', Auth::user()->name) }}"><i class="fa fa-user" aria-hidden="true"></i> 个人信息</a></li>
-                                <li><a href="{{ url('/home') }}"><i class="fa fa-home" aria-hidden="true"></i> 控制面板</a></li>
+                                <li><a href="{{ url('/home') }}"><i class="fa fa-home" aria-hidden="true"></i> 管理中心</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
@@ -107,7 +107,7 @@
                 </ul>
                 <form class="navbar-form navbar-left" action="{{ route('search') }}">
                     <div class="form-group">
-                        <input type="text" class="form-control h50" name="q" placeholder="关键字...">
+                        <input type="text" class="form-control h50" name="q" placeholder="关键字..." value="{{ (Request::is('search*') && isset($q)) ? $q : '' }}">
                     </div>
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 </form>

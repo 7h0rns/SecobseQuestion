@@ -93,9 +93,16 @@ $smallMedia-width: 360px;
     .details {
       display: inline-table;
       vertical-align: top;
+      margin-left: -3.75em;
       padding-left: .25em;
       width: 65%;
+      @include ordinaryMedia {
+        margin-left: 0;
+      }
 
+      a {
+        color: #333;
+      }
       .tag-and-create-info {
 
         .tag {
@@ -108,7 +115,7 @@ $smallMedia-width: 360px;
             float: none;
           }
           .spanColor {
-              color: $font-color;
+              color: #777;
           }
         }
       }

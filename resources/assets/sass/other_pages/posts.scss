@@ -89,7 +89,9 @@ $smallMedia-width: 360px;
       padding-top: .1em;
       width: 75%;
       overflow: hidden;
-
+      a {
+        color: #333;
+      }
       .create-info {
         float: left;
         @include ordinaryMedia {
@@ -97,7 +99,7 @@ $smallMedia-width: 360px;
         }
 
         .spanColor {
-            color: $font-color;
+            color: #777;
         }
       }
     }
@@ -137,6 +139,9 @@ $smallMedia-width: 360px;
 
     .posts-body {
         color: $font-color;
+        img {
+           width: 100%;
+        }
     }
 }
 

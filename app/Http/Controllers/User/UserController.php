@@ -24,8 +24,8 @@ class UserController extends Controller
  		$user = DB::table('users')
  							->where('name', $username)
  							->get();
- 		$questions = Question::where('username', $username)->orderBy('published_at', 'desc')->Paginate(5);
-        $userPosts = Post::where('username', $username)->orderBy('created_at', 'desc')->Paginate(5);
+ 		$questions = Question::where('username', $username)->orderBy('published_at', 'desc')->Paginate(4);
+        $userPosts = Post::where('username', $username)->orderBy('created_at', 'desc')->Paginate(4);
  		return view('users.profile', ['user' => $user, 'questions' => $questions, 'userPosts' => $userPosts]);
  	}
 
