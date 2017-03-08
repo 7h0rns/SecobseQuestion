@@ -10,6 +10,7 @@ use Auth;
 use Image;
 use DB;
 use App\Question;
+use App\Post;
 use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
@@ -19,13 +20,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-	public function profile($username) {
-		$user = DB::table('users')
-							->where('name', $username)
-							->get();
-		$questions = Question::where('username', $username)->orderBy('published_at', 'desc')->Paginate(5);
-		return view('users.profile', ['user' => $user, 'questions' => $questions]);
-	}
+     public function profile($username) {
+ 		$user = DB::table('users')
+ 							->where('name', $username)
+ 							->get();
+ 		$questions = Question::where('username', $username)->orderBy('published_at', 'desc')->Paginate(5);
+        $userPosts = Post::where('username', $username)->orderBy('created_at', 'desc')->Paginate(5);
+ 		return view('users.profile', ['user' => $user, 'questions' => $questions, 'userPosts' => $userPosts]);
+ 	}
 
     /**
      * Update user avatar.

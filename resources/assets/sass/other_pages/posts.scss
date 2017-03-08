@@ -1,0 +1,169 @@
+//color variables
+$font-color: #242729;
+$border-bottom-color: #F7F7F9;
+$posts-create-color: #8a6d3b;
+$posts-create-border-color: #fbeed5;
+$posts-create-bgc: #fcf8e3;
+
+$ordinaryMedia-width: 768px;
+$smallMedia-width: 360px;
+
+//@mixin
+
+@mixin ordinaryMedia {
+    @media only screen and (max-width: #{$ordinaryMedia-width}){
+        @content;
+    }
+}
+
+@mixin smallMedia {
+    @media only screen and (max-width: #{$smallMedia-width}) {
+        @content;
+    }
+}
+
+@mixin border-radius($value) {
+    -webkit-border-radius: $value;
+    -moz-border-radius: $value;
+    -ms-border-radius: $value;
+    -o-border-radius: $value;
+    border-radius: $value;
+}
+
+//posts list content style
+.posts-content {
+  margin-top: 1em;
+
+  .singlePosts {
+    margin: {
+      top: .25em;
+      right: .25em;
+    }
+    padding: {
+      top: .25em;
+    }
+    border-bottom: 2px solid $border-bottom-color;
+    line-height: 1.6;
+
+    .count-wide {
+      display: inline-block;
+      vertical-align: top;
+      width: 11%;
+      @include ordinaryMedia {
+        display: none;
+      }
+      @include smallMedia {
+        display: none;
+      }
+      div {
+        display: inline-block;
+        margin-left: 1.5em;
+        width: 30%;
+        text-align: center;
+        p {
+          font-size: .75em;
+        }
+      }
+      @include ordinaryMedia {
+        display: none;
+      }
+    }
+
+    .count-narrow {
+      display: none;
+      vertical-align: top;
+      float: right;
+
+      @include ordinaryMedia {
+        display: inline-block;
+      }
+
+      @include smallMedia {
+        display: none;
+      }
+    }
+
+    .details {
+      display: inline-table;
+      vertical-align: top;
+      padding-top: .1em;
+      width: 75%;
+      overflow: hidden;
+
+      .create-info {
+        float: left;
+        @include ordinaryMedia {
+          float: none;
+        }
+
+        .spanColor {
+            color: $font-color;
+        }
+      }
+    }
+  }
+}
+
+//posts create content style
+.posts-create {
+  margin: {
+    top: 3em;
+    bottom: 2em;
+  }
+  border: 1px solid $posts-create-border-color;
+  padding: 1em;
+  background-color: $posts-create-bgc;
+  color: $posts-create-color;
+  text-align: center;
+  @include border-radius(1em);
+  p {
+    font: {
+      size: 1em;
+      weight: bold;
+    }
+    a {
+      font: {
+        size: 1em;
+        weight: bold;
+      }
+    }
+  }
+}
+
+//show posts content style
+.showPosts {
+    color: $font-color;
+    overflow: hidden;
+
+    .posts-body {
+        color: $font-color;
+    }
+}
+
+.addComment {
+    margin-bottom: 5em;
+
+    .comment-btn {
+        margin-top: 1em;
+    }
+}
+
+//scroll to top content style
+
+.scrollToTop{
+  display: none;
+  position:fixed;
+  bottom: 5em;
+  right: 5em;
+  -webkit-border-radius:1.3em;
+  -moz-border-radius:1.3em;
+  border-radius:1.3em;
+  padding:10px;
+  width: auto;
+  height: auto;
+  text-decoration: none;
+  background-color: #a09b9b;
+  &:hover {
+      text-decoration: none;
+  }
+}

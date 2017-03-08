@@ -107,6 +107,9 @@ $smallMedia-width: 360px;
           @include ordinaryMedia {
             float: none;
           }
+          .spanColor {
+              color: $font-color;
+          }
         }
       }
     }
