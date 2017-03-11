@@ -96,7 +96,7 @@ class LoginController extends Controller
     {
         DB::table('users')
                     ->where('id', Auth::user()->id)
-                    ->update(['isactive' => $request->input('isactive')]);
+                    ->update(['isactive' => $request->get('isactive')]);
 
         $this->guard()->logout();
 

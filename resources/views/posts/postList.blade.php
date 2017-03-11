@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="count-narrow">
-                            <div><label for="vote" class="label label-default">评论: 0</label></div>
+                            <div><label for="vote" class="label label-default">评论: {{$post->comments->count('id')}}</label></div>
                         </div>
                     </div>
                     @endforeach
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="count-narrow">
-                            <div><label for="vote" class="label label-default">评论: 0</label></div>
+                            <div><label for="vote" class="label label-default">评论: {{$post->comments->count('id')}}</label></div>
                         </div>
                     </div>
                     @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Post;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -159,14 +160,24 @@ class QuestionController extends Controller
         })->toArray();
     }
 
+    /**
+     * Search questions and posts
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function search(Request $request)
     {
         $q = $request->get('q');
 
-        $questions = Question::search($q, null, true)->paginate(15);
+        $questions = Question::search($q, null, true)->paginate(20);
 
-        $count = $questions->count('id');
+        $posts = Post::search($q, null, true)->get();
 
-        return view('questions.search', compact('questions', 'q','count'));
+        $question_count = $questions->count('id');
+        $post_count = $posts->count('id');
+
+        $count = $question_count + $post_count;
+
+        return view('questions.search', compact('questions', 'posts', 'q','count','question_count','post_count'));
     }
 }

@@ -16,7 +16,6 @@
 
     <link rel="shortcut icon" href="/images/logo.png">
 
-
     @yield('css')
 
     <!-- Scripts -->
@@ -105,12 +104,14 @@
                         </li>
                     @endif
                 </ul>
+                <div class="search">
                 <form class="navbar-form navbar-left" action="{{ route('search') }}">
                     <div class="form-group">
-                        <input type="text" class="form-control h50" name="q" placeholder="关键字..." value="{{ (Request::is('search*') && isset($q)) ? $q : '' }}">
+                        <input type="text" class="form-control" name="q" placeholder="搜索" value="{{ (Request::is('search*') && isset($q)) ? $q : '' }}">
                     </div>
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <button type="submit"></button>
                 </form>
+                </div>
             </div>
         </div>
     </nav>
