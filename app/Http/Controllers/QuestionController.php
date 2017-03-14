@@ -77,7 +77,7 @@ class QuestionController extends Controller
 
 		$userAvatar = DB::table('users')->where('name',$question->username)->value('avatar');
 
-		$answer = Answer::all()->where('question_id',$id);
+		$answer = Answer::all()->where('question_id',$id)->sortByDesc('isadopt');
 
 		$question->save();
 

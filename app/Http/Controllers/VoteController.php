@@ -18,6 +18,7 @@ class VoteController extends Controller
      */
     public function __construct(AnswerRepository $answer)
     {
+        $this->middleware('auth');
         $this->answer = $answer;
     }
 

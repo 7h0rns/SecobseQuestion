@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Question;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -88,6 +89,41 @@ class AnswerController extends Controller
 
 
         flash('回答修改成功!', 'success');
+
+        return redirect()->route('questions.show', [$answers->question_id]);
+    }
+
+    public function adopt($id)
+    {
+        $answers = Answer::find($id);
+        $question = Question::where('id',$answers->question_id);
+        $adopt = $question->value('isadopt');
+        if($adopt == 1)
+        {
+            flash('只能采纳一个问题作为最佳答案。','warning');
+            return back();
+        }
+        else{
+            $answers->isadopt = 1;
+
+            $answers->save();
+
+            $question->update(['isadopt' => 1]);
+
+            return redirect()->route('questions.show', [$answers->question_id]);
+        }
+
+    }
+
+    public function undoAdopt($id)
+    {
+        $answers = Answer::find($id);
+
+        $answers->isadopt = 0;
+
+        Question::where('id',$answers->question_id)->update(['isadopt' => 0]);
+
+        $answers->save();
 
         return redirect()->route('questions.show', [$answers->question_id]);
     }

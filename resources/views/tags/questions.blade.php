@@ -14,12 +14,10 @@
 			@foreach($questions as $question)
 				<div class="question-tags">
 					<div class="count-wide">
-							<div><p>-1</p><p>得票</p></div>
 							<div><p>{{ $question->answertimes }}</p><p>回答</p></div>
 							<div><p>{{ $question->readtimes }}</p><p>浏览</p></div>
 					</div>
 					<div class="count-narrow">
-							<div><label for="vote" class="label label-default">得票: 0</label></div>
 							<div><label for="answer" class="label label-default">回答: {{ $question->answertimes }}</label></div>
 							<div><label for="view" class="label label-default">浏览: {{ $question->readtimes }}</label></div>
 					</div>

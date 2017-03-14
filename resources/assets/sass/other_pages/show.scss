@@ -315,6 +315,14 @@ $smallMedia-width: 550px;
         }
       }
     }
+
+    .adopt {
+      margin-top: 11px;
+      text-align: center;
+      .fa-check-square , span{
+        color: #008000;
+      }
+    }
   }
 
   .answer-comment {

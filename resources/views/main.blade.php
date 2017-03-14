@@ -61,9 +61,9 @@
                             </div>
                         @endforeach
                         @if($questions->count('id') >= 15)
-                        <nav class="page">
-                            {{ $questions->links() }}
-                        </nav>
+                            <nav class="page">
+                                {{ $questions->links() }}
+                            </nav>
                         @endif
                     </div>
 
@@ -108,11 +108,11 @@
                                 </div>
                             </div>
                         @endforeach
-                            @if($noAnswerQuestion->count('id') >= 15)
-                                <nav class="page">
-                                    {{ $noAnswerQuestion->links() }}
-                                </nav>
-                            @endif
+                        @if($noAnswerQuestion->count('id') >= 15)
+                            <nav class="page">
+                                {{ $noAnswerQuestion->links() }}
+                            </nav>
+                        @endif
                     </div>
 
                     {{--mostViewQuestions--}}
@@ -157,11 +157,11 @@
                                 </div>
                             </div>
                         @endforeach
-                            @if($mostViewQuestion->count('id') >= 15)
-                                <nav class="page">
-                                    {{ $mostViewQuestion->links() }}
-                                </nav>
-                            @endif
+                        @if($mostViewQuestion->count('id') >= 15)
+                            <nav class="page">
+                                {{ $mostViewQuestion->links() }}
+                            </nav>
+                        @endif
                     </div>
                 </div>
             </div>

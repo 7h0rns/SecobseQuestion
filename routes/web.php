@@ -32,7 +32,9 @@ Route::resource('posts', 'PostController', ['names' =>[
     'show' => 'post.show',
 ]]);
 Route::resource('tag','TagController');
-Route::resource('answer','AnswerController', ['only' => ['store','edit','update']]);
+Route::resource('answer','AnswerController');
+Route::get('/adopt/{id}', 'AnswerController@adopt')->name('adopt');
+Route::get('/undoAdopt/{id}', 'AnswerController@undoAdopt')->name('undoAdopt');
 Route::resource('comment','CommentController',['only' => ['store']]);
 
 Route::get('profile/{username}', 'User\UserController@profile')->name('profile.name');
