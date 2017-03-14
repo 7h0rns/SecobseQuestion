@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        @if($questions)
+                        @if($questions->count('id') >= 1)
                             <nav class="page">
                                 {{$questions->links()}}
                             </nav>
@@ -113,6 +113,11 @@
                                 </div>
                             </div>
                         @endforeach
+                        @if($posts->count('id') >= 1)
+                            <nav class="page">
+                                {{ $posts->links() }}
+                            </nav>
+                        @endif
                     </div>
                 </div>
             </div>

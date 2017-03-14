@@ -177,6 +177,10 @@ $smallMedia-width: 360px;
   }
 }
 
+.page {
+  text-align: center;
+}
+
 //scroll to top content style
 
 .scrollToTop{
@@ -184,16 +188,20 @@ $smallMedia-width: 360px;
   position:fixed;
   bottom: 5em;
   right: 5em;
-  -webkit-border-radius:1.3em;
-  -moz-border-radius:1.3em;
-  border-radius:1.3em;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+  border-radius:50%;
   padding:10px;
-  width: auto;
-  height: auto;
+  width: 2.8em;
+  height: 2.8em;
   text-decoration: none;
-  background-color: #a09b9b;
+  color: #333;
+  background-color: rgba(33, 31, 13, 0.13);
   &:hover {
-      text-decoration: none;
+    text-decoration: none;
+  }
+  i {
+    line-height: 0.6em;
   }
 }
 

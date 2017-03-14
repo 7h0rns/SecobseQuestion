@@ -32,7 +32,7 @@ Route::resource('posts', 'PostController', ['names' =>[
     'show' => 'post.show',
 ]]);
 Route::resource('tag','TagController');
-Route::resource('answer','AnswerController', ['only' => ['store']]);
+Route::resource('answer','AnswerController', ['only' => ['store','edit','update']]);
 Route::resource('comment','CommentController',['only' => ['store']]);
 
 Route::get('profile/{username}', 'User\UserController@profile')->name('profile.name');

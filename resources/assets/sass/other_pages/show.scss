@@ -318,7 +318,7 @@ $smallMedia-width: 550px;
   }
 
   .answer-comment {
-    .comments {
+    .operate {
       margin-bottom: .5em;
       color: $comment-color;
       @include ordinaryMedia {
@@ -326,6 +326,9 @@ $smallMedia-width: 550px;
       }
       @include smallMedia {
         margin-left: auto;
+      }
+      a {
+        color: #999;
       }
     }
 

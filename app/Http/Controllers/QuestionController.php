@@ -97,7 +97,7 @@ class QuestionController extends Controller
 	{
 		$question =  Question::with('tags')->findOrFail($id);
 
-		if (Auth::user()->owns($question)){
+		if (Auth::user()->owns($question)) {
             return view('questions.edit', compact('question'));
         }
 
@@ -149,8 +149,8 @@ class QuestionController extends Controller
      */
     private function normalizeTag(array $tags)
     {
-        return collect($tags)->map(function ($tag){
-            if (is_numeric($tag)){
+        return collect($tags)->map(function ($tag) {
+            if (is_numeric($tag)) {
                 Tag::find($tag)->increment('questions_count');
                 return (int)$tag;
             }
@@ -171,7 +171,7 @@ class QuestionController extends Controller
 
         $questions = Question::search($q, null, true)->paginate(20);
 
-        $posts = Post::search($q, null, true)->get();
+        $posts = Post::search($q, null, true)->paginate(20);
 
         $question_count = $questions->count('id');
         $post_count = $posts->count('id');

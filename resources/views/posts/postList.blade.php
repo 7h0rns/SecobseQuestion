@@ -41,6 +41,9 @@
                         </div>
                     </div>
                     @endforeach
+                    <nav class="page">
+                    {{ $posts->links() }}
+                    </nav>
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="mostviewed">
@@ -67,6 +70,9 @@
                         </div>
                     </div>
                     @endforeach
+                    <nav class="page">
+                    {{ $hotPosts->links() }}
+                    </nav>
                 </div>
             </div>
 

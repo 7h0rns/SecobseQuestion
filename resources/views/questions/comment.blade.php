@@ -10,7 +10,7 @@
         <div class="answer-content">
             <article id="answer_content">@MarkDown($as->html_content)</article>
             <div class="answer-user-info">
-                <span class="answered-time">{{ $as->created_at }}回答</span>
+                <span class="answered-time">{{ $as->updated_at->diffForHumans() }}回答</span>
                 <img src="/uploads/avatars/{{ $as->avatar}}" alt="{{ $as->avatar}}"  style="border-radius: 50% ;width:32px;height: 32px"/>
                 <a href="/profile/{{ $as->answer_name }}">{{$as->answer_name}}</a>
             </div>
@@ -20,8 +20,13 @@
   <div class="answer-comment">
     <div class="col-md-offset-1 col-sm-offset-1">
       <div class="comment">
-          <div class="comments">
-              &nbsp;评论{{$as->comments->count('id')}}
+          <div class="operate">
+              <a class="comments">
+                  &nbsp;评论{{$as->comments->count('id')}}
+              </a>
+              @if(Auth::check() && Auth::user()->ownAnswer($as))
+              <a href="/answer/{{$as->id}}/edit" class="editComment">编辑</a>
+              @endif
           </div>
           <div class="addComment">
                 @foreach($as->comments as $co)

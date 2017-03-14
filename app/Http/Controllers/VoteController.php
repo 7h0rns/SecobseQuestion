@@ -37,7 +37,7 @@ class VoteController extends Controller
         $answer = $this->answer->byId(request('answer'));
         $voted = Auth::guard('api')->user()->voteFor(request('answer'));
 
-        if (count($voted['attached'])>0){
+        if (count($voted['attached'])>0) {
             $answer->increment('votes_count');
 
             return response()->json(['voted' => true]);

@@ -34,15 +34,19 @@
                 <div class="panel-heading">
                     <div class="comments">{{$post->comments->count('id')}}&nbsp;评论</div>
                 </div>
-
+                <div class="panel-body">
+                <ul class="list-group row">
                 @foreach($post->comments as $co)
-                <div class="comment-content panel-body">
+                    <li class="list-group-item">
                     @MarkDown($co->html_content)
+                    <img src="/uploads/avatars/{{ $co->user->avatar }}" alt="{{ $co->user->avatar }}"  style="border-radius: 50% ;width:32px;height: 32px"/>
                     <span class="username"><a href="/profile/{{ $co->username }}">{{ $co->username }}</a></span>
                     <span class="createdtime">&nbsp;·&nbsp;{{$co->created_at->diffForHumans()}}评论</span>
-                    <hr>
-                </div>
+
+                    </li>
                 @endforeach
+                </ul>
+            </div>
             </div>
         </div>
     </div>

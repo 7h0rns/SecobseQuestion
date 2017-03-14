@@ -59,6 +59,19 @@ class User extends Authenticatable
         return $this->hasMany('App\Question', "username", "name");
     }
 
+    public function ownAnswer(Model $model)
+    {
+        return $this->id == $model->user_id;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, "user_id", "id");
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

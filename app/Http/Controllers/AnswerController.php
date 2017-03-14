@@ -57,4 +57,38 @@ class AnswerController extends Controller
 
         return redirect('/questions/' . $question_id);
     }
+
+    public function edit($id)
+    {
+        $answers =  Answer::findOrFail($id);
+
+        if (Auth::user()->ownAnswer($answers)) {
+            return view('questions.editAnswer',compact('answers'));
+        }
+
+        return back();
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $answers = Answer::find($id);
+
+        $answers->update([
+            'answer_content' => $request->get('answer_content'),
+            'html_content' => Markdown::convertToHtml($request->get('answer_content')),
+        ]);
+
+
+        flash('回答修改成功!', 'success');
+
+        return redirect()->route('questions.show', [$answers->question_id]);
+    }
 }
