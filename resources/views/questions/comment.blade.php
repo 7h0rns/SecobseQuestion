@@ -2,13 +2,13 @@
     <div class="question-answers-mainbar">
         <div class="row question-answers">
             <div class="col-md-1 col-sm-1">
-                <div class="answer-votes" style="margin-top: 11px">
+                <div class="answer-votes">
                     <user-vote-button answer="{{ $as->id }}" count="{{ $as->votes_count }}"></user-vote-button>
                 </div>
                 <div class="adopt">
                     @if($as->isadopt ==1)
-                        <i class="fa fa-check-square fa-2x" aria-hidden="true"></i><br>
-                        <span>已采纳</span>
+                        <span class="adopt-icon"><i class="fa fa-check-square fa-2x" aria-hidden="true"></i></span>
+                        <span class="adopt-text">已采纳</span>
                     @endif
                 </div>
             </div>
@@ -41,6 +41,7 @@
                                 <a href="{{ route('adopt', [$as->id]) }}" class="adopt">采纳该回答</a>
                             @endif
                         @endif
+                        <span class="vote-btn"><user-vote-button answer="{{ $as->id }}" count="{{ $as->votes_count }}"></user-vote-button></span>
                     </div>
                     <div class="addComment">
                         @foreach($as->comments as $co)
