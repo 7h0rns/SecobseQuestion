@@ -228,42 +228,15 @@ $smallMedia-width: 550px;
   .question-answers {
     position: relative;
     .answer-votes {
-      line-height: 1;
-      margin-top: -1em;
-      @include bigMedia {
-        line-height: .6;
-        margin-top: -.6em;
-      }
-      @include ordinaryMedia {
-        line-height: .4;
-        position: absolute;
-        top: .7em;
-        z-index: 1;
-      }
-      .vote-top {
-        font-size: 1.75em;
-        color: $grey;
         @include bigMedia {
-          font-size: 1.5em;
+            display: none;
         }
         @include ordinaryMedia {
-          font-size: 1em;
+            display: none;
         }
-      }
-
-      .vote-times {
-        display: block;
-        width: 1.75em;
-        text-align: center;
-        color: $grey;
-        @include ordinaryMedia {
-          width: 1.2em;
+        @include smallMedia {
+            display: none;
         }
-      }
-
-      .vote-bottom {
-        @extend .vote-top;
-      }
     }
 
     .answer-content {
@@ -317,11 +290,44 @@ $smallMedia-width: 550px;
     }
 
     .adopt {
-      margin-top: 11px;
-      text-align: center;
-      .fa-check-square , span{
+        width: 3.5em;
+        height: 3.5em;
+        display: inline-block;
+        margin-top: 1em;
+        text-align: center;
         color: #008000;
-      }
+        @include bigMedia {
+            margin-top: 0;
+        }
+        @include ordinaryMedia {
+            width: 2.75em;
+            height: 2.75em;
+            position: absolute;
+            top: .25em;
+            left: 2.75em;
+        }
+        @include smallMedia {
+            top: -.75em;
+            left: .75em;
+        }
+        span.adopt-icon {
+            display: block;
+            @include ordinaryMedia {
+                font-size: .75em;
+            }
+            @include smallMedia {
+                font-size: .75em;
+            }
+        }
+        span.adopt-text {
+            display: block;
+            @include ordinaryMedia {
+                font-size: .75em;
+            }
+            @include smallMedia {
+                font-size: .5em;
+            }
+        }
     }
   }
 
@@ -337,6 +343,19 @@ $smallMedia-width: 550px;
       }
       a {
         color: #999;
+      }
+
+      .vote-btn {
+          display: none;
+          @include bigMedia {
+              display: inline;
+          }
+          @include ordinaryMedia {
+              display: inline;
+          }
+          @include smallMedia {
+              display: inline;
+          }
       }
     }
 
