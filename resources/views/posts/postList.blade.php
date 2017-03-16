@@ -83,6 +83,17 @@
                 <p><a class="btn btn-success btn-block" href="/posts/create" role="button">撰写</a></p>
                 <p>开始吧!</p>
             </div>
+            <div class="list-group recommend">
+                <h4 class="recommend-name">活跃用户</h4>
+                <ol>
+                    @foreach($popularUser as $hotUser)
+                        <li>
+                            <img src="/uploads/avatars/{{ $hotUser->avatar }}"/>
+                            <a href="/profile/{{ $hotUser->name }}">{{ $hotUser->name }}</a>
+                        </li>
+                    @endforeach
+                </ol>
+            </div>
         </div>
     </div>
 </div>

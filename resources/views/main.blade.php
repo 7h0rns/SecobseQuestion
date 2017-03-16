@@ -169,7 +169,7 @@
             <div class="col-md-3">
                 <div class="questions-create">
                     <p>今天，你编程遇到了什么问题呢？</p>
-                    <p><a class="btn btn-success btn-block" href="/questions/create" role="button">提问</a></p>
+                    <p><a class="btn btn-success btn-block" href="{{ route('questions.create') }}" role="button">提问</a></p>
                     <p>开始吧!</p>
                 </div>
                 <div class="list-group recommend">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use GrahamCampbell\Markdown\Facades\Markdown;
@@ -28,7 +29,8 @@ class PostController extends Controller
     {
         $posts = Post::latest('created_at')->Paginate(10);
         $hotPosts = Post::orderBy('read_count', 'desc')->Paginate(10);
-        return view('posts.postList', compact('posts','hotPosts'));
+        $popularUser = User::all()->sortByDesc('questions_count')->slice(0,5);
+        return view('posts.postList', compact('posts','hotPosts','popularUser'));
     }
 
     /**

@@ -107,7 +107,7 @@
                 <div class="search">
                 <form class="navbar-form navbar-left" action="{{ route('search') }}">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="q" placeholder="搜索" value="{{ (Request::is('search*') && isset($q)) ? $q : '' }}">
+                        <input type="text" class="form-control" name="q" placeholder="关键字" value="{{ (Request::is('search*') && isset($q)) ? $q : '' }}">
                     </div>
                     <button type="submit"></button>
                 </form>

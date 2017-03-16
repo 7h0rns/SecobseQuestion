@@ -38,13 +38,18 @@
         </div>
         <div class="col-md-6">
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#questions" role="tab" data-toggle="tab">我的问题</a></li>
-                <li role="presentation"><a href="#posts" role="tab" data-toggle="tab">我的文章</a></li>
+                <li role="presentation" class="active"><a href="#questions" role="tab" data-toggle="tab">提问&nbsp;{{ $questions->count('id') }}</a></li>
+                <li role="presentation"><a href="#posts" role="tab" data-toggle="tab">文章&nbsp;{{ $userPosts->count('id') }}</a></li>
             </ul>
 
             <div class="tab-content posts-content">
                 <div role="tabpanel" class="tab-pane active" id="questions">
                     <div class="panel panel-default" id="problemHead">
+                        @if($questions->isEmpty())
+                            <div class="content-center">
+                                <span>还没有问题</span>
+                            </div>
+                        @else
                         <!-- List group -->
                         <div class="list-group">
                             @foreach($questions as $question)
@@ -59,15 +64,22 @@
                             </a>
                             @endforeach
                         </div>
-
+                        @if($questions->count('id') >=4)
                         <nav class="page">
-                            {{$questions->render()}}
+                            {{$questions->links()}}
                         </nav>
+                            @endif
+                        @endif
                     </div>
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="posts">
                     <div class="panel panel-default" id="problemHead">
+                        @if($userPosts->isEmpty())
+                            <div class="content-center">
+                                <span>还没有文章</span>
+                            </div>
+                        @else
                         <!-- List group -->
                         <div class="list-group">
                             @foreach($userPosts as $userQuestion)
@@ -76,10 +88,12 @@
                             </a>
                             @endforeach
                         </div>
-
+                        @if($userPosts->count('id') > 6)
                         <nav class="page">
-                            {{$userPosts->render()}}
+                            {{$userPosts->links()}}
                         </nav>
+                            @endif
+                        @endif
                     </div>
                 </div>
             </div>

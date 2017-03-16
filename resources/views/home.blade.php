@@ -112,7 +112,11 @@
                  <i class="fa fa-trash" aria-hidden="true"></i>: 删除
                  </div>
              </div>
-
+             @if($userQuestions->isEmpty())
+                 <div class="content-center">
+                     <span>你还没有问题</span>
+                 </div>
+            @else
              <!-- List group -->
             <ul class="list-group">
               @foreach($userQuestions as $userQuestion)
@@ -134,6 +138,7 @@
                   {{$userQuestions->render()}}
               </nav>
           </div>
+             @endif
          </div>
        </div>
        <div class="col-md-10 tab-pane" id="thirdPage" role="tabpanel">
@@ -141,7 +146,9 @@
              <div class="panel-heading">我的标签</div>
              <div class="panel-body">
                  @if($tags->isEmpty())
-                     你还没有标签!
+                     <div class="content-center">
+                         <span>你还没有标签!</span>
+                     </div>
                      @else
                      <div>标签: <i class="fa fa-tags" aria-hidden="true"></i>
                          @foreach($tags as $tag)
@@ -161,6 +168,12 @@
                          <i class="fa fa-trash" aria-hidden="true"></i>: 删除
                      </div>
                  </div>
+                 @if($userPosts->isEmpty())
+                     <div class="content-center">
+                         <span>你还没有文章,开始<a href="{{ route('post.create') }}">写第一篇文章吧。</a></span>
+
+                     </div>
+                 @else
                  <ul class="list-group">
                      @foreach($userPosts as $userQuestion)
                          <li class="list-group-item listPost">
@@ -181,6 +194,7 @@
                          {{$userPosts->render()}}
                      </nav>
                  </div>
+                     @endif
              </div>
          </div>
      </div>
