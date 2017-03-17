@@ -132,6 +132,34 @@ $smallMedia-width: 360px;
   }
 }
 
+.recommend {
+  display: inline-block;
+  .recommend-name {
+    margin-left: 1.75em;
+    font-size: 1em;
+    color: black;
+  }
+  ol {
+    li {
+      padding: 1em;
+      img {
+        margin-right: 0.5em;
+        @include border-radius(50%);
+        width: 2em;
+        height: 2em;
+      }
+      a {
+        text-decoration: none;
+        color: black;
+        &:hover {
+          color: #2ed07a;
+        }
+      }
+    }
+  }
+}
+
+
 //show posts content style
 .showPosts {
     color: $font-color;

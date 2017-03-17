@@ -110,7 +110,8 @@
             </div>
         </div>
     </div>
-
+    <!-- scroll to top -->
+    <a href="#" class="scrollToTop"><i class="fa fa-angle-up fa-2x" aria-hidden="true"></i></a>
 
 
 
@@ -120,6 +121,19 @@
     <script src="/js/simplemde.min.js"></script>
     <script>
         $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.scrollToTop').fadeIn();
+                } else {
+                    $('.scrollToTop').fadeOut();
+                }
+            });
+            $('.scrollToTop').click(function () {
+                $('html, body').animate({scrollTop: 0}, 800);
+                return false;
+            });
+
+
             $('.comments').click(function () {
                 $comment = $(this).closest('.comment');
                 $comment.siblings().find('.addComment').slideUp();

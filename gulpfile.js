@@ -27,6 +27,9 @@ elixir(mix => {
         .copy('node_modules/simplemde/dist/simplemde.min.js', 'public/js/simplemde.min.js')
         .copy('node_modules/select2/dist/js/select2.min.js', 'public/js/select2.min.js')
         .copy('node_modules/select2/dist/css/select2.min.css', 'public/css/select2.min.css')
+        .copy('resources/assets/sass/share.min.css', 'public/css/share.min.css')
+        .copy('node_modules/social-share.js/dist/js/social-share.min.js', 'public/js/social-share.min.js')
+        .copy('node_modules/social-share.js/dist/fonts', 'public/fonts')
         .copy('resources/assets/js/home.js','public/js/home.js')
         .copy('node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css', 'public/css/select2-bootstrap.min.css')
         .webpack('app.js');

@@ -463,3 +463,25 @@ $smallMedia-width: 550px;
     }
   }
 }
+
+.scrollToTop{
+  display: none;
+  position:fixed;
+  bottom: 5em;
+  right: 5em;
+  -webkit-border-radius:50%;
+  -moz-border-radius:50%;
+  border-radius:50%;
+  padding:10px;
+  width: 2.8em;
+  height: 2.8em;
+  text-decoration: none;
+  color: #333;
+  background-color: rgba(33, 31, 13, 0.13);
+  &:hover {
+    text-decoration: none;
+  }
+  i {
+    line-height: 0.6em;
+  }
+}
