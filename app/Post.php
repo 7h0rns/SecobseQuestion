@@ -44,6 +44,10 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function followers()
+    {
+        return $this->belongsToMany(User::class,'user_post')->withTimestamps();
+    }
     /**
      * posts has many comment
      * @return \Illuminate\Database\Eloquent\Relations\morphMany

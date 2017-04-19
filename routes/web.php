@@ -31,6 +31,8 @@ Route::resource('posts', 'PostController', ['names' =>[
     'create' => 'post.create',
     'show' => 'post.show',
 ]]);
+Route::get('post/{post}/follow','PostFollowController@follow');
+
 Route::resource('tag','TagController');
 Route::resource('answer','AnswerController');
 Route::get('/adopt/{id}', 'AnswerController@adopt')->name('adopt');

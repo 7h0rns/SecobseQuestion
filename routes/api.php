@@ -24,5 +24,26 @@ Route::get('/tags', function (Request $request) {
     return $tags;
 })->middleware('api');
 
+Route::post('/post/follower', function (Request $request) {
+    $user = Auth::guard('api')->user();
+    $followed = $user->followed($request->get('post'));
+    if($followed) {
+        return response()->json(['followed' => true]);
+    }
+    return response()->json(['followed' => false]);
+})->middleware('auth:api');
+
+Route::post('/post/follow', function (Request $request) {
+    $user = Auth::guard('api')->user();
+    $post = \App\Post::find($request->get('post'));
+    $followed = $user->followThis($post->id);
+    if(count($followed['detached']) > 0) {
+        $post->decrement('followers_count');
+        return response()->json(['followed' => false]);
+    }
+    $post->increment('followers_count');
+    return response()->json(['followed' => true]);
+})->middleware('auth:api');
+
 Route::post('answer/{id}/votes/users','VoteController@users')->middleware('auth:api');
 Route::post('answer/vote','VoteController@vote')->middleware('auth:api');

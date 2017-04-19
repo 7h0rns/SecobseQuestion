@@ -11,7 +11,7 @@
     export default {
         props:['answer','count'],
         mounted() {
-            this.$http.post('http://localhost:8000/api/answer/' + this.answer + '/votes/users').then(response =>{
+            this.$http.post('/api/answer/' + this.answer + '/votes/users').then(response =>{
                 this.voted = response.data.voted
             })
         },
@@ -27,7 +27,7 @@
         },
         methods: {
             vote(){
-                this.$http.post('http://localhost:8000/api/answer/vote', {'answer':this.answer}).then(response => {
+                this.$http.post('/api/answer/vote', {'answer':this.answer}).then(response => {
                     this.voted = response.data.voted;
                     response.data.voted ? this.count ++ : this.count --
                 })

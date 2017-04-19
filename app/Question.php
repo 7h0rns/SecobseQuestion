@@ -63,7 +63,7 @@ class Question extends Model
 
 		return Carbon::parse($date)->diffForHumans();
 	}
-	
+
 	/**
 	 * Question has many tags
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

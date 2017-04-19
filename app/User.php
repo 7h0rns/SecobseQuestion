@@ -51,6 +51,20 @@ class User extends Authenticatable
         return $this->name == $model->username;
     }
 
+    public function follows()
+    {
+       return $this->belongsToMany(Post::class,'user_post')->withTimestamps();
+    }
+
+    public function followThis($post)
+    {
+        return $this->follows()->toggle($post);
+    }
+
+    public function followed($post)
+    {
+        return !! $this->follows()->where('post_id',$post)->count();
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

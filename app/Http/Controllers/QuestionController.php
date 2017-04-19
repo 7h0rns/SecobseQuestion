@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\Post;
+use App\Repositories\QuestionRepository;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -11,21 +12,21 @@ use App\Http\Requests;
 
 use Auth;
 use App\Question;
-use App\Tag;
-use App\Vote;
 use Illuminate\Support\Facades\DB;
 use GrahamCampbell\Markdown\Facades\Markdown;
 
 class QuestionController extends Controller
 {
+    private $questionRepository;
 	/**
-	 * Instantiate Questioncontroller instance.
+	 * Instantiate QuestionController instance.
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(QuestionRepository $questionRepository)
 	{
 		$this->middleware('auth')->except('show', 'index','search');
+		$this->questionRepository = $questionRepository;
 	}
 
 	/**
@@ -41,19 +42,19 @@ class QuestionController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param  \Illuminate\Http\Request $request
+	 * @param  \Illuminate\Http\Reque   st $request
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Requests\StoreQuestionRequest $request)
 	{
-	    $tags = $this->normalizeTag($request->get('tags'));
+	    $tags = $this->questionRepository->normalizeTag($request->get('tags'));
 		$data = [
             'title' => $request->get('title'),
             'content' => $request->get('mdContent'),
             'username' => Auth::user()->name,
         ];
 
-		$question = Question::create($data);
+		$question = $this->questionRepository->create($data);
 
 		$question->tags()->attach($tags);
         $user = User::find(Auth::user()->id)->increment('questions_count');
@@ -71,7 +72,7 @@ class QuestionController extends Controller
 	 */
 	public function show($id)
 	{
-		$question =  Question::with('tags')->findOrFail($id);
+		$question =  $this->questionRepository->byIdWithTags($id);
 
 		$question->readtimes += 1;
 
@@ -95,7 +96,7 @@ class QuestionController extends Controller
 	 */
 	public function edit($id)
 	{
-		$question =  Question::with('tags')->findOrFail($id);
+		$question =  $this->questionRepository->byIdWithTags($id);
 
 		if (Auth::user()->owns($question)) {
             return view('questions.edit', compact('question'));
@@ -113,8 +114,8 @@ class QuestionController extends Controller
 	 */
 	public function update(Requests\StoreQuestionRequest $request, $id)
 	{
-		$question = Question::with('tags')->findOrFail($id);
-        $tags = $this->normalizeTag($request->get('tags'));
+		$question = $this->questionRepository->byIdWithTags($id);
+        $tags = $this->questionRepository->normalizeTag($request->get('tags'));
 
 		$question->update([
             'title' => $request->get('title'),
@@ -136,29 +137,8 @@ class QuestionController extends Controller
 	 */
 	public function destroy($id)
 	{
-		$question = Question::findOrFail($id);
-
-		$question->delete();
+		return $this->questionRepository->byIdDelete($id);
 	}
-
-    /**
-     * create new tag and increment questions_count
-     *
-     * @param array $tags
-     * @return array
-     */
-    private function normalizeTag(array $tags)
-    {
-        return collect($tags)->map(function ($tag) {
-            if (is_numeric($tag)) {
-                Tag::find($tag)->increment('questions_count');
-                return (int)$tag;
-            }
-            $newTag = Tag::create(['name' => $tag, 'questions_count' => 1]);
-
-            return $newTag->id;
-        })->toArray();
-    }
 
     /**
      * Search questions and posts

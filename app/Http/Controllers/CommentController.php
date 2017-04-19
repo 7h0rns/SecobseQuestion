@@ -49,7 +49,7 @@ class CommentController extends Controller
         if ($comment->commentable_type == 'App\Post')
         {
             $post = Post::find($id)->increment('comments_count');
-            return redirect('posts/' . $id);
+            return redirect('posts/' . $id .'/#comment');
         }
         return   redirect('/questions/' . $id);
     }

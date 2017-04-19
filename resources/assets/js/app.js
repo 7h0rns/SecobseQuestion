@@ -15,6 +15,7 @@ require('./bootstrap');
 
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('user-vote-button', require('./components/UserVoteButton.vue'));
+Vue.component('post-follow-button', require('./components/PostFollowButton.vue'));
 
 const app = new Vue({
     el: '#app'

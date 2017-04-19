@@ -10,7 +10,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-1">
                 <div class="panel panel-default showPosts">
                     <div class="panel-heading">
                         <h3 class="posts-title">{{ $post->title }}</h3>
@@ -31,10 +31,26 @@
                     <div id="debug"></div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading postFollow" style="text-align: center">
+                        <h2>{{ $post->followers_count }}</h2>
+                        <span>关注者</span>
+                    </div>
+                    <div class="panel-body">
+                        {{--<a href="/post/{{$post->id}}/follow"--}}
+                           {{--class="btn btn-default {{ Auth::user()->followed($post->id) ? 'btn-success':'' }}">--}}
+                            {{--{{ Auth::user()->followed($post->id) ? '已关注':'关注该问题' }}--}}
+                        {{--</a>--}}
+                        <post-follow-button post="{{ $post->id }}"></post-follow-button>
+                        <a href="#editor" class="btn btn-primary">撰写评论</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-offset-2 col-md-8 col-md-offset-2">
-                <div class="panel panel-default comment">
+            <div class="col-md-8 col-md-offset-1">
+                <div class="panel panel-default comment" id="comment">
                     <div class="panel-heading">
                         <div class="comments">{{$post->comments->count('id')}}&nbsp;评论</div>
                     </div>
@@ -57,7 +73,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+            <div class="col-md-8 col-md-offset-1">
                 <div class="addComment">
                     <div class="comment-submit">
                         <form action="{{ route('comment.store') }}" method="post" class="form-group">
@@ -65,7 +81,7 @@
                             <input type="hidden" name="commentable_id" value="{{ $post->id }}">
                             <input type="hidden" name="id" value="{{$post->id}}">
                             <input type="hidden" name="commentable_type" value="App\Post">
-                            <textarea name="content" rows="4" class="form-control" placeholder="填写评论,支持 Markdown 语法"
+                            <textarea name="content" rows="4" id="editor" class="form-control" placeholder="填写评论,支持 Markdown 语法"
                                       required></textarea>
                             <button type="submit" class="btn btn-success comment-btn">评论</button>
                         </form>

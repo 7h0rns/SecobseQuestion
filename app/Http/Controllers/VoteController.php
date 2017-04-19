@@ -22,6 +22,10 @@ class VoteController extends Controller
         $this->answer = $answer;
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function users($id)
     {
         $user = Auth::guard('api')->user();
@@ -33,6 +37,9 @@ class VoteController extends Controller
         return response()->json(['voted' => false]);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function vote()
     {
         $answer = $this->answer->byId(request('answer'));
