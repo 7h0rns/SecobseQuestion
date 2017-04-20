@@ -32,6 +32,7 @@ Route::resource('posts', 'PostController', ['names' =>[
     'show' => 'post.show',
 ]]);
 Route::get('post/{post}/follow','PostFollowController@follow');
+Route::get('notifications','NotificationsController@index');
 
 Route::resource('tag','TagController');
 Route::resource('answer','AnswerController');

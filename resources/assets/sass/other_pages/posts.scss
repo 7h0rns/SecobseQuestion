@@ -11,23 +11,23 @@ $smallMedia-width: 360px;
 //@mixin
 
 @mixin ordinaryMedia {
-    @media only screen and (max-width: #{$ordinaryMedia-width}){
-        @content;
-    }
+  @media only screen and (max-width: #{$ordinaryMedia-width}) {
+    @content;
+  }
 }
 
 @mixin smallMedia {
-    @media only screen and (max-width: #{$smallMedia-width}) {
-        @content;
-    }
+  @media only screen and (max-width: #{$smallMedia-width}) {
+    @content;
+  }
 }
 
 @mixin border-radius($value) {
-    -webkit-border-radius: $value;
-    -moz-border-radius: $value;
-    -ms-border-radius: $value;
-    -o-border-radius: $value;
-    border-radius: $value;
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+  -ms-border-radius: $value;
+  -o-border-radius: $value;
+  border-radius: $value;
 }
 
 //posts list content style
@@ -99,7 +99,7 @@ $smallMedia-width: 360px;
         }
 
         .spanColor {
-            color: #777;
+          color: #777;
         }
       }
     }
@@ -159,27 +159,27 @@ $smallMedia-width: 360px;
   }
 }
 
-
 //show posts content style
 .showPosts {
-    color: $font-color;
-    overflow: hidden;
+  color: $font-color;
+  overflow: hidden;
 
-    .posts-body {
-        color: $font-color;
-        img {
-           width: 100%;
-        }
+  .posts-body {
+    color: $font-color;
+    img {
+      width: 100%;
     }
+  }
 }
 
 .addComment {
-    margin-bottom: 5em;
+  margin-bottom: 5em;
 
-    .comment-btn {
-        margin-top: 1em;
-    }
+  .comment-btn {
+    margin-top: 1em;
+  }
 }
+
 .comment {
   .panel-body {
     padding: 0 15px;
@@ -197,27 +197,27 @@ $smallMedia-width: 360px;
   }
 }
 
-.page,.postFollow {
+.page, .postFollow {
   text-align: center;
 }
 //scroll to top content style
 
-.scrollToTop{
+.scrollToTop {
   display: none;
-  position:fixed;
+  position: fixed;
   bottom: 5em;
   right: 5em;
-  -webkit-border-radius:50%;
-  -moz-border-radius:50%;
-  border-radius:50%;
-  padding:10px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  padding: 10px;
   width: 2.8em;
   height: 2.8em;
   text-decoration: none;
   color: #333;
   background-color: rgba(33, 31, 13, 0.13);
   &:hover {
-      text-decoration: none;
+    text-decoration: none;
   }
   i {
     line-height: 0.6em;

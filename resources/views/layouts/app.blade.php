@@ -79,6 +79,11 @@
 
                             </ul>
                         </li>
+                        <li>
+                            <a href="{{url('/notifications')}}" type="button" data-toggle="tooltip" data-placement="bottom" title="消息通知">
+                                <i class="fa fa-bell" aria-hidden="true"><span class="badge">{{Auth::user()->unreadNotifications()->count()}}</span></i>
+                            </a>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->avatar }}" style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;" />
@@ -297,6 +302,7 @@
     <script src="/js/app.js"></script>
     <script>
         $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
             $('#flash-overlay-modal').modal();
             $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
         });

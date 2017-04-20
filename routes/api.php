@@ -45,5 +45,8 @@ Route::post('/post/follow', function (Request $request) {
     return response()->json(['followed' => true]);
 })->middleware('auth:api');
 
+Route::get('/user/followers/{id}','FollowersController@index')->middleware('auth:api');
+Route::post('/user/follow','FollowersController@follow')->middleware('auth:api');
+
 Route::post('answer/{id}/votes/users','VoteController@users')->middleware('auth:api');
 Route::post('answer/vote','VoteController@vote')->middleware('auth:api');

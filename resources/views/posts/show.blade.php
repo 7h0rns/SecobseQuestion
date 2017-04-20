@@ -26,24 +26,65 @@
                         {!! $post->content !!}
                     </div>
                     <div class="panel-footer" style="background-color: white">
-                        <div class="social-share" data-disabled="diandian,linkedin" data-wechat-qrcode-title="请打开微信扫一扫"></div>
+                        <div class="social-share" data-disabled="diandian,linkedin"
+                             data-wechat-qrcode-title="请打开微信扫一扫"></div>
                     </div>
                     <div id="debug"></div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading postFollow" style="text-align: center">
+                    <div class="panel-heading postFollow">
                         <h2>{{ $post->followers_count }}</h2>
                         <span>关注者</span>
                     </div>
                     <div class="panel-body">
                         {{--<a href="/post/{{$post->id}}/follow"--}}
-                           {{--class="btn btn-default {{ Auth::user()->followed($post->id) ? 'btn-success':'' }}">--}}
-                            {{--{{ Auth::user()->followed($post->id) ? '已关注':'关注该问题' }}--}}
+                        {{--class="btn btn-default {{ Auth::user()->followed($post->id) ? 'btn-success':'' }}">--}}
+                        {{--{{ Auth::user()->followed($post->id) ? '已关注':'关注该问题' }}--}}
                         {{--</a>--}}
                         <post-follow-button post="{{ $post->id }}"></post-follow-button>
-                        <a href="#editor" class="btn btn-primary">撰写评论</a>
+                        <a href="#editor" class="btn btn-primary pull-right">撰写评论</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading postFollow">
+                        <h5>关于作者</h5>
+                    </div>
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="">
+                                    <img width="36" src="/uploads/avatars/{{$post->user->avatar}}"
+                                         alt="{{$post->user->name}}">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="">
+                                        {{$post->user->name}}
+                                    </a>
+                                </h4>
+                            </div>
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col-md-3" style="text-align: center">
+                                    <div class="static-text">问题</div>
+                                    <div class="static-count">{{$post->user->questions_count}}</div>
+                                </div>
+                                <div class="col-md-3" style="text-align: center">
+                                    <div class="static-text">回答</div>
+                                    <div class="static-count">{{$post->user->answers_count}}</div>
+                                </div>
+                                <div class="col-md-4" style="text-align: center">
+                                    <div class="static-text">关注者</div>
+                                    <div class="static-count">{{$post->user->followers_count}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <user-follow-button user="{{ $post->user_id }}"></user-follow-button>
+                        <button class="btn btn-primary pull-right">发送私信</button>
                     </div>
                 </div>
             </div>
@@ -81,7 +122,8 @@
                             <input type="hidden" name="commentable_id" value="{{ $post->id }}">
                             <input type="hidden" name="id" value="{{$post->id}}">
                             <input type="hidden" name="commentable_type" value="App\Post">
-                            <textarea name="content" rows="4" id="editor" class="form-control" placeholder="填写评论,支持 Markdown 语法"
+                            <textarea name="content" rows="4" id="editor" class="form-control"
+                                      placeholder="填写评论,支持 Markdown 语法"
                                       required></textarea>
                             <button type="submit" class="btn btn-success comment-btn">评论</button>
                         </form>

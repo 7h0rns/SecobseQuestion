@@ -9,9 +9,9 @@
 
 <script>
     export default {
-        props:['post'],
+        props:['user'],
         mounted() {
-            this.$http.post('/api/post/follower',{'post':this.post}).then(response => {
+            this.$http.get('/api/user/followers/'+ this.user).then(response => {
                 this.followed = response.data.followed
             })
         },
@@ -22,12 +22,12 @@
         },
         computed: {
             text(){
-                return this.followed ? '已关注' : '关注该文章'
+                return this.followed ? '已关注' : '关注他'
             }
         },
         methods: {
             follow(){
-                this.$http.post('/api/post/follow',{'post':this.post}).then(response => {
+                this.$http.post('/api/user/follow',{'user':this.user}).then(response => {
                     this.followed = response.data.followed
                 })
             }
