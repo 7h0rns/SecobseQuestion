@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mailer\UserMailer;
 use Mail;
 use App\User;
 use Validator;
@@ -79,17 +80,7 @@ class RegisterController extends Controller
 
     private function sendVerifyEmailTo($user)
     {
-        $data = [
-            'url' => route('email.verify',['token' => $user->confirmation_token]),
-            'name' => $user->name
-        ];
-        $template = new SendCloudTemplate('secobseQuestion_app_register', $data);
-
-        Mail::raw($template, function ($message) use ($user){
-            $message->from('gasbylei@foxmail.com', 'SecobseQuestion');
-
-            $message->to($user->email);
-        });
+        (new UserMailer())->welcome($user);
     }
 
 }

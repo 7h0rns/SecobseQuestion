@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Mailer\UserMailer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Mail;
+use Naux\Mail\SendCloudTemplate;
 
 /**
  * Class User
@@ -22,10 +25,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','confirmation_token','api_token','introduce'
+        'name', 'email', 'password', 'confirmation_token', 'api_token', 'introduce'
     ];
 
-     /**
+    /**
      * The attributes that are primarykey.
      *
      * @var array
@@ -42,6 +45,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * Password reset email notification
+     * @param string $token
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        (new UserMailer())->passwordReset($this->email,$token);
+    }
+
+    /**
      * Judge whether the questioner
      * @param Model $model
      * @return bool
@@ -53,7 +65,7 @@ class User extends Authenticatable
 
     public function follows()
     {
-       return $this->belongsToMany(Post::class,'user_post')->withTimestamps();
+        return $this->belongsToMany(Post::class, 'user_post')->withTimestamps();
     }
 
     public function followThis($post)
@@ -63,16 +75,18 @@ class User extends Authenticatable
 
     public function followed($post)
     {
-        return !! $this->follows()->where('post_id',$post)->count();
+        return !!$this->follows()->where('post_id', $post)->count();
     }
 
-    public function followers(){
-        return $this->belongsToMany(self::class,'followers','follower_id','followed_id')
+    public function followers()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'follower_id', 'followed_id')
             ->withTimestamps();
     }
 
-    public function followersUser(){
-        return $this->belongsToMany(self::class,'followers','followed_id','follower_id')
+    public function followersUser()
+    {
+        return $this->belongsToMany(self::class, 'followers', 'followed_id', 'follower_id')
             ->withTimestamps();
     }
 
@@ -80,6 +94,7 @@ class User extends Authenticatable
     {
         return $this->followers()->toggle($user);
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -106,16 +121,16 @@ class User extends Authenticatable
      */
     public function posts()
     {
-        return $this->hasMany(Post::class,"username", "name");
+        return $this->hasMany(Post::class, "username", "name");
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tags()
-	{
-		return $this->hasMany('App\Tag');
-	}
+    {
+        return $this->hasMany('App\Tag');
+    }
 
     /**
      * Get the answers for the question.
@@ -128,7 +143,7 @@ class User extends Authenticatable
 
     public function votes()
     {
-        return $this->belongsToMany(Answer::class,'votes')->withTimestamps();
+        return $this->belongsToMany(Answer::class, 'votes')->withTimestamps();
     }
 
     public function voteFor($answer)
@@ -143,7 +158,7 @@ class User extends Authenticatable
      */
     public function hasVotedFor($answer)
     {
-        return !! $this->votes()->where('answer_id',$answer)->count();
+        return !!$this->votes()->where('answer_id', $answer)->count();
     }
 }
 
