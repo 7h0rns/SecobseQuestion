@@ -17,12 +17,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::get('/tags', function (Request $request) {
-    $tags = \App\Tag::select(['id','name'])
-        ->where('name','like','%'.$request->query('q').'%')
-        ->get();
-    return $tags;
-})->middleware('api');
+Route::get('/tags','TagController@index')->middleware('api');
 
 Route::post('/post/follower', function (Request $request) {
     $user = Auth::guard('api')->user();
@@ -50,3 +45,5 @@ Route::post('/user/follow','FollowersController@follow')->middleware('auth:api')
 
 Route::post('answer/{id}/votes/users','VoteController@users')->middleware('auth:api');
 Route::post('answer/vote','VoteController@vote')->middleware('auth:api');
+
+Route::post('/message/store','MessageController@store');

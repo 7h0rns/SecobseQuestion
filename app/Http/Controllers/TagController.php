@@ -10,6 +10,14 @@ use App\Question;
 
 class TagController extends Controller
 {
+    public function index(Request $request)
+    {
+        $tags = \App\Tag::select(['id','name'])
+            ->where('name','like','%'.$request->query('q').'%')
+            ->get();
+        return $tags;
+    }
+
 	public function show($id)
 	{
 		$tag = Tag::find($id);

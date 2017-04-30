@@ -82,9 +82,8 @@
                                 </div>
                             </div>
                         </div>
-
                         <user-follow-button user="{{ $post->user_id }}"></user-follow-button>
-                        <button class="btn btn-primary pull-right">发送私信</button>
+                        <send-message user="{{ $post->user_id }}"></send-message>
                     </div>
                 </div>
             </div>
