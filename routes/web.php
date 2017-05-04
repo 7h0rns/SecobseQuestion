@@ -43,6 +43,11 @@ Route::resource('comment','CommentController',['only' => ['store']]);
 Route::get('profile/{username}', 'User\UserController@profile')->name('profile.name');
 Route::post('profile', 'User\UserController@updateAvatar')->middleware('auth');
 
+Route::get('inbox', 'InboxController@index');
+Route::get('inbox/{dialogId}', 'InboxController@show');
+Route::post('inbox/{dialogId}/store', 'InboxController@store');
+
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function()
 {
 		Route::get('login', 'AdminHomeController@getLogin');

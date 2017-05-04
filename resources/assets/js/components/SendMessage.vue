@@ -1,10 +1,11 @@
 <template>
     <div>
-    <button
-            class="btn btn-default pull-right"
-            style="margin-top: -36px;"
-            @click="showSendMessageForm"
-    >发送私信</button>
+        <button
+                class="btn btn-default pull-right"
+                style="margin-top: -36px;"
+                @click="showSendMessageForm"
+        >发送私信
+        </button>
         <div class="modal fade" id="modal-send-message" tabindex="-1" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -37,21 +38,21 @@
 
 <script>
     export default {
-        props:['user'],
+        props: ['user'],
         data(){
             return {
-                body:'',
+                body: '',
                 status: false
             }
         },
         methods: {
             store(){
-                this.$http.post('/api/message/store', {'user':this.user,'body':this.body}).then(response => {
+                this.$http.post('/api/message/store', {'user': this.user, 'body': this.body}).then(response => {
                     this.status = response.data.status;
                     this.body = '';
                     setTimeout(function () {
                         $('#modal-send-message').modal('hide')
-                    },1000)
+                    }, 1000)
                 })
             },
             showSendMessageForm(){
