@@ -2,9 +2,11 @@
 
 <style>
     .unread {
-        background-color: #fff5d4;
+        background-color: #fff9ea;
     }
 </style>
+@section('title','私信列表')
+
 @section('content')
     <div class="container">
         <div class="row">

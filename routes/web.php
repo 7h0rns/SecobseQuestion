@@ -33,6 +33,7 @@ Route::resource('posts', 'PostController', ['names' =>[
 ]]);
 Route::get('post/{post}/follow','PostFollowController@follow');
 Route::get('notifications','NotificationsController@index');
+Route::get('notifications/{notification}','NotificationsController@show');
 
 Route::resource('tag','TagController');
 Route::resource('answer','AnswerController');

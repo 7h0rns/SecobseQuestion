@@ -81,7 +81,9 @@
                         </li>
                         <li>
                             <a href="{{url('/notifications')}}" type="button" data-toggle="tooltip" data-placement="bottom" title="消息通知">
-                                <i class="fa fa-bell" aria-hidden="true"><span class="badge">{{Auth::user()->unreadNotifications()->count()}}</span></i>
+                                <i class="fa fa-bell" aria-hidden="true"><span class="badge">
+                                        {{Auth::user()->unreadNotifications()->count()}}
+                                    </span></i>
                             </a>
                         </li>
                         <li class="dropdown">
@@ -93,6 +95,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/profile', Auth::user()->name) }}"><i class="fa fa-user" aria-hidden="true"></i> 个人信息</a></li>
                                 <li><a href="{{ url('/home') }}"><i class="fa fa-home" aria-hidden="true"></i> 管理中心</a></li>
+                                <li><a href="{{ url('/inbox') }}"><i class="fa fa-envelope" aria-hidden="true"></i> 私信列表</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();

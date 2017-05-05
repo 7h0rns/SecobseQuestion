@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
-
+@section('title','消息通知')
+<style>
+    .notifications {
+        position: relative;
+        padding: 8px 15px 8px 25px;
+        color: #666;
+        border: none;
+        border-top: 1px dotted #eee;
+        background: transparent;
+    }
+    .notifications.unread {
+        background: #fff9ea;
+    }
+</style>
 @section('content')
     <div class="container">
         <div class="row">
