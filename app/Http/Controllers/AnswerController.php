@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Answer;
+use App\Notifications\NewAnswerNotification;
 use App\Question;
+use App\Repositories\AnswerRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
-
-use App\Http\Requests;
 use GrahamCampbell\Markdown\Facades\Markdown;
 
 class AnswerController extends Controller
 {
+    private $answerRepository;
+
+    public function __construct(AnswerRepository $answerRepository)
+    {
+        $this->answerRepository = $answerRepository;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -42,8 +47,7 @@ class AnswerController extends Controller
         if ($query) {
             flash('你已经回答了', 'danger');
         } else {
-            $answer = Answer::create([
-
+            $answer = $this->answerRepository->create([
                 'answer_name' => $user->name,
                 'answer_content' => $content,
                 'html_content' => Markdown::convertToHtml($content),
@@ -51,8 +55,10 @@ class AnswerController extends Controller
                 'question_id' => $question_id,
                 'user_id' => $user->id
             ]);
+            $answer->user->notify(new NewAnswerNotification($answer));
             $user = User::find(Auth::user()->id)->increment('answers_count');
             $answer->question()->increment('answertimes');
+
             flash('回答成功', 'success');
         }
 
@@ -61,7 +67,7 @@ class AnswerController extends Controller
 
     public function edit($id)
     {
-        $answers =  Answer::findOrFail($id);
+        $answers =  $this->answerRepository->byId($id);
 
         if (Auth::user()->ownAnswer($answers)) {
             return view('questions.editAnswer',compact('answers'));
@@ -80,7 +86,7 @@ class AnswerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $answers = Answer::find($id);
+        $answers =  $this->answerRepository->byId($id);
 
         $answers->update([
             'answer_content' => $request->get('answer_content'),
@@ -95,7 +101,7 @@ class AnswerController extends Controller
 
     public function adopt($id)
     {
-        $answers = Answer::find($id);
+        $answers =  $this->answerRepository->byId($id);
         $question = Question::where('id',$answers->question_id);
         $adopt = $question->value('isadopt');
         if($adopt == 1)
@@ -117,7 +123,7 @@ class AnswerController extends Controller
 
     public function undoAdopt($id)
     {
-        $answers = Answer::find($id);
+        $answers =  $this->answerRepository->byId($id);
 
         $answers->isadopt = 0;
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NewCommentNotification;
+use App\Notifications\NewPostCommentNotification;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -31,7 +33,7 @@ class CommentController extends Controller
         if (Auth::user()) {
             $user = Auth::user();
         } else {
-            flash('你还没有登录，请登录后再进行评论','warning' );
+            flash('你还没有登录，请登录后再进行评论', 'warning');
             return redirect('/questions/' . $id);
         }
 
@@ -45,28 +47,14 @@ class CommentController extends Controller
         ]);
         $user = User::find(Auth::user()->id)->increment('comments_count');
 
-        flash('评论成功','success');
-        if ($comment->commentable_type == 'App\Post')
-        {
+        flash('评论成功', 'success');
+        if ($comment->commentable_type == 'App\Post') {
             $post = Post::find($id)->increment('comments_count');
-            return redirect('posts/' . $id .'/#comment');
+            $comment->commentable->user->notify(new NewPostCommentNotification($comment));
+            return redirect('posts/' . $id . '/#comment');
         }
-        return   redirect('/questions/' . $id);
+        $comment->commentable->user->notify(new NewCommentNotification($comment));
+        return redirect('/questions/' . $id);
     }
-//    public function postComment(Request $request)
-//    {
-//        $this->validate($request, [
-//            'content' => 'required',
-//        ]);
-//        $comment = Comment::find(Auth::user()->id);
-//        $comment->content = $request->get('content');
-//        $comment->html_content = Markdown::convertToHtml($request->get('content'));
-//        $comment->commentable_id = $request->get('commentable_id');
-//        $comment->commentable_type = $request->get('commentable_type');
-//        $comment->username = Auth::user()->name;
-//        $comment->user_id = Auth::id();
-//        $comment->save();
-//        return $comment;
-//    }
 
 }
