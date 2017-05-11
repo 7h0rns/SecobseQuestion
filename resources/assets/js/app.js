@@ -18,6 +18,7 @@ Vue.component('user-vote-button', require('./components/UserVoteButton.vue'));
 Vue.component('post-follow-button', require('./components/PostFollowButton.vue'));
 Vue.component('user-follow-button', require('./components/UserFollowButton.vue'));
 Vue.component('send-message', require('./components/SendMessage.vue'));
+Vue.component('comment-reply', require('./components/CommentReply.vue'));
 
 const app = new Vue({
     el: '#app'
