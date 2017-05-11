@@ -104,7 +104,9 @@
                                     <span class="username"><a
                                                 href="/profile/{{ $co->username }}">{{ $co->username }}</a></span>
                                     <span class="createdtime">&nbsp;·&nbsp;{{$co->created_at->diffForHumans()}}评论</span>
-
+                                    {{--<comment-reply username="{{$co->username}}"></comment-reply>--}}
+                                    <span class="pull-right"><a href="javascript:void(0)" class="fa fa-reply" id="reply" onclick="reply('{{{$co->username}}}')"
+                                                                title="回复: {{ $co->username }}"></a></span>
                                 </li>
                             @endforeach
                         </ul>
@@ -151,5 +153,21 @@
                 return false;
             });
         });
+
+        function reply(username) {
+            replyContent = $("#editor");
+            oldContent = replyContent.val();
+            prefix = "@" + username + " ";
+            newContent = '';
+            if (oldContent.length > 0) {
+                if (oldContent !== prefix) {
+                    newContent = oldContent + "\n" + prefix;
+                }
+            } else {
+                newContent = prefix;
+            }
+            replyContent.focus();
+            replyContent.val(newContent);
+        }
     </script>
 @endsection
