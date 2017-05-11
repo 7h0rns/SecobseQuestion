@@ -16,7 +16,6 @@
         "barryvdh/laravel-debugbar": "^2.3.2",
         "overtrue/laravel-ueditor": "~1.0",
         "nicolaslopezj/searchable": "1.*",
-        "jormin/laravel-ddoc": "^1.0",
         "barryvdh/laravel-ide-helper": "^2.3"
     },
     "require-dev": {
