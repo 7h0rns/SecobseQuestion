@@ -15,12 +15,15 @@
                     <div class="panel-heading">
                         <h3 class="posts-title">{{ $post->title }}</h3>
                         <span class="posts-info">
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;
-                        <a href="{{ route('profile.name',[$post->username]) }}">{{ $post->username }}</a>
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; {{ $post->created_at }}
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;
+                            <a href="{{ route('profile.name',[$post->username]) }}">{{ $post->username }}</a>
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp; {{ $post->created_at }}
                             <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;{{ $post->read_count }}
                             <i class="fa fa-comments" aria-hidden="true"></i>&nbsp;{{ $post->comments_count }}
-                    </span>
+                            @can('update', $post)
+                                <i class="fa fa-edit" aria-hidden="true"></i>&nbsp;<a href="{{route('post.edit',['id' => $post->id])}}">编辑</a>
+                            @endcan
+                         </span>
                     </div>
                     <div class="panel-body posts-body">
                         {!! $post->content !!}
@@ -105,7 +108,8 @@
                                                 href="/profile/{{ $co->username }}">{{ $co->username }}</a></span>
                                     <span class="createdtime">&nbsp;·&nbsp;{{$co->created_at->diffForHumans()}}评论</span>
                                     {{--<comment-reply username="{{$co->username}}"></comment-reply>--}}
-                                    <span class="pull-right"><a href="javascript:void(0)" class="fa fa-reply" id="reply" onclick="reply('{{{$co->username}}}')"
+                                    <span class="pull-right"><a href="javascript:void(0)" class="fa fa-reply" id="reply"
+                                                                onclick="reply('{{{$co->username}}}')"
                                                                 title="回复: {{ $co->username }}"></a></span>
                                 </li>
                             @endforeach

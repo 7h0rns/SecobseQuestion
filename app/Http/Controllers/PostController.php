@@ -91,6 +91,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post =  Post::findOrFail($id);
+        $this->authorize('update', $post);
 
         if (Auth::user()->owns($post)){
             return view('posts.edit', compact('post'));
@@ -109,6 +110,7 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
+        $this->authorize('update', $post);
 
         $post->update([
             'title' => $request->get('title'),

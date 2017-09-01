@@ -30,6 +30,7 @@ Route::get('/search', 'QuestionController@search')->name('search');
 Route::resource('posts', 'PostController', ['names' =>[
     'create' => 'post.create',
     'show' => 'post.show',
+    'edit' => 'post.edit',
 ]]);
 Route::get('post/{post}/follow','PostFollowController@follow');
 Route::get('notifications','NotificationsController@index');
