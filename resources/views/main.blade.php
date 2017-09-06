@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Secobse')
+@section('title', 'ThoughtPlus')
 
 @section('css')
     <link rel="stylesheet" href="/css/other/main.css">

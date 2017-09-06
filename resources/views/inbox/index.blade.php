@@ -41,6 +41,9 @@
                                         <a href="/inbox/{{ $messageGroup->first()->dialog_id }}">
                                             {{ $messageGroup->first()->body }}
                                         </a>
+                                        <span class="pull-right">
+                                            {{$messageGroup->first()->created_at->format('Y-m-d')}}
+                                        </span>
                                     </p>
                                 </div>
                             </div>

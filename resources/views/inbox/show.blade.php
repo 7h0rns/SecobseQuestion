@@ -33,7 +33,7 @@
                                             </a>
                                         </h4>
                                         <p>
-                                            {{ $message->body }} <span class="pull-right">{{ $message->created_at->format('Y-m-d') }}</span>
+                                            {{ $message->body }} <span class="pull-right">{{ $message->created_at->format('Y-m-d h:i') }}</span>
                                         </p>
                                     </div>
                                 </div>

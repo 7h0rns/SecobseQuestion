@@ -13,7 +13,7 @@ require('laravel-elixir-vue-2');
  |
  */
 
-elixir(mix => {
+elixir(function(mix) {
     mix.sass('app.scss')
         .sass('layout/nav.scss', 'public/css/other')
         .sass('other_pages/main.scss', 'public/css/other')

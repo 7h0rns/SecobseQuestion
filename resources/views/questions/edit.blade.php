@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label for="tags">标签</label>
                                 <div class="input-group">
-                                    <select class="form-control" multiple="multiple" name="tags[]" id="task-list">
+                                    <select class="form-control" multiple="multiple" name="tags[]" id="task-list" style="width: 100%">
                                         @foreach($question->tags as $tag)
                                             <option value="{{ $tag->id }}" selected="selected">{{$tag->name}}</option>
                                         @endforeach

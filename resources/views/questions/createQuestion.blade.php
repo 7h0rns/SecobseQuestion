@@ -31,7 +31,7 @@
                             <div class="form-group">
                                 <label for="tags">标签</label>
                                 <div class="input-group">
-                                    <select class="form-control" multiple="multiple" name="tags[]" id="task-list">
+                                    <select class="form-control" multiple="multiple" name="tags[]" id="task-list" style="width: 100%">
                                     </select>
                                     @if ($errors->has('tags'))
                                         <div class="alert alert-danger">

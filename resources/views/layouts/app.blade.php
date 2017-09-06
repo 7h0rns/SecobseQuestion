@@ -41,7 +41,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand secobse-logo" href="{{ url('/') }}">
-                    Secobse
+                    ThoughtPlus
                 </a>
 
             </div>
