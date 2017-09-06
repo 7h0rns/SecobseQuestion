@@ -1,48 +1,10 @@
 <?php
 
+$db_config = get_db_config();
+
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | PDO Fetch Style
-    |--------------------------------------------------------------------------
-    |
-    | By default, database results will be returned as instances of the PHP
-    | stdClass object; however, you may desire to retrieve records in an
-    | array format for simplicity. Here you can tweak the fetch style.
-    |
-    */
-
-    'fetch' => PDO::FETCH_OBJ,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Default Database Connection Name
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify which of the database connections below you wish
-    | to use as your default connection for all database work. Of course
-    | you may use many connections at once using the Database library.
-    |
-    */
-
-    'default' => env('DB_CONNECTION', 'mysql'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Database Connections
-    |--------------------------------------------------------------------------
-    |
-    | Here are each of the database connections setup for your application.
-    | Of course, examples of configuring each database platform that is
-    | supported by Laravel is shown below to make development simple.
-    |
-    |
-    | All database work in Laravel is done through the PHP PDO facilities
-    | so make sure you have the driver for your particular database of
-    | choice installed on your machine before you begin development.
-    |
-    */
+    'default' => $db_config['connection'],
 
     'connections' => [
 
@@ -54,29 +16,41 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'secobse_dev'),
-            'username' => env('DB_USERNAME', 'secobse'),
-            'password' => env('DB_PASSWORD', 'dev'),
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'strict' => true,
             'engine' => null,
         ],
 
         'pgsql' => [
-            'driver' => 'pgsql',
+            'driver'   => 'pgsql',
+            'host'     => $db_config['host'],
+            'port'     => env('DB_PORT', '5432'),
+            'database' => $db_config['database'],
+            'username' => $db_config['username'],
+            'password' => $db_config['password'],
+            'charset'  => 'utf8',
+            'prefix'   => '',
+            'schema'   => 'public',
+            'sslmode'  => 'prefer',
+        ],
+
+        'sqlsrv' => [
+            'driver' => 'sqlsrv',
             'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '5432'),
+            'port' => env('DB_PORT', '1433'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
-            'schema' => 'public',
-            'sslmode' => 'prefer',
         ],
 
     ],
@@ -107,10 +81,10 @@ return [
 
     'redis' => [
 
-        'cluster' => false,
+        'client' => 'predis',
 
         'default' => [
-            'host' => env('REDIS_HOST', 'localhost'),
+            'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', 6379),
             'database' => 0,
